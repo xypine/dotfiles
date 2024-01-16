@@ -140,99 +140,70 @@ require("lazy").setup({
 		"nvim-lualine/lualine.nvim",
 		dependencies = { 'nvim-tree/nvim-web-devicons' }
 	},
-	{ "testaustime/testaustime.nvim", dependencies = { "nvim-lua/plenary.nvim" } }
+	{ "testaustime/testaustime.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
+	-- treesitter configuration
+	{
+		"nvim-treesitter/nvim-treesitter",
+		event = { "BufReadPre", "BufNewFile" },
+		build = function()
+			local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
+			ts_update()
+		end,
+		config = function()
+			require("plugins.config.treesitter")
+		end,
+		dependencies = {
+			"JoosepAlviste/nvim-ts-context-commentstring", -- allow comments in mixed content files like jsx, html and svelte
+			"windwp/nvim-ts-autotag", -- autoclose html tags
+		},
+	},
+	-- commenting
+	{
+		"terrortylor/nvim-comment",
+		event = { "BufReadPre", "BufNewFile" },
+		config = function()
+			require("plugins.config.comment")
+		end,
+	}, -- commenting plugin
+
+	-- auto closing
+	{
+		"windwp/nvim-autopairs",
+		event = { "InsertEnter" },
+		config = function()
+			require("plugins.config.autopairs")
+		end,
+	}, -- autoclose parens, brackets, quotes, etc...
+
+	-- git integration
+	{
+		"lewis6991/gitsigns.nvim",
+		event = { "BufReadPre", "BufNewFile" },
+		config = function()
+			require("plugins.config.gitsigns")
+		end,
+	}, -- show line modifications on left hand side
+
+	{
+		"sindrets/diffview.nvim",
+		config = function()
+			require("plugins.config.diffview")
+		end,
+		dependencies = { "nvim-lua/plenary.nvim" },
+	}, -- diffview (diffing and merging git commits)
 
 })
 
 require('colorscheme')
+require("plugins.config.lualine")
+require("plugins.config.telescope")
+require("plugins.config.lsp")
+require("plugins.config.testaustime")
 
--- Setup lualine
-require('lualine').setup()
-
--- Enable lsp_zero for easy lsp support
-local lsp_zero = require('lsp-zero')
-lsp_zero.configure('rust_analyzer', {
-	settings = {
-		['rust-analyzer'] = {
-			checkOnSave = {
-				command = 'clippy'
-			},
-		},
-	},
-})
-lsp_zero.on_attach(function(client, bufnr)
-	-- see :help lsp-zero-keybindings
-	-- to learn the available actions
-	lsp_zero.default_keymaps({ buffer = bufnr })
-
-
-	-- make sure you use clients with formatting capabilities
-	-- otherwise you'll get a warning message
-	if client.supports_method('textDocument/formatting') then
-		require('lsp-format').on_attach(client)
-	end
-end)
-
-local cmp = require('cmp')
-local cmp_action = require('lsp-zero').cmp_action()
-
--- Setup cmp
-cmp.setup({
-	mapping = cmp.mapping.preset.insert({
-		-- `Enter` key to confirm completion
-		['<CR>'] = cmp.mapping.confirm({ select = false }),
-
-		-- Ctrl+Space to trigger completion menu
-		['<C-Space>'] = cmp.mapping.complete(),
-
-		-- Navigate between snippet placeholder
-		['<C-f>'] = cmp_action.luasnip_jump_forward(),
-		['<C-b>'] = cmp_action.luasnip_jump_backward(),
-
-		-- Scroll up and down in the completion documentation
-		['<C-u>'] = cmp.mapping.scroll_docs(-4),
-		['<C-d>'] = cmp.mapping.scroll_docs(4),
-	})
-})
-
---- if you want to know more about lsp-zero and mason.nvim
---- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
-require('mason').setup({})
-require('mason-lspconfig').setup({
-	ensure_installed = { "lua_ls", "rust_analyzer", "tsserver" },
-	handlers = {
-		lsp_zero.default_setup,
-	},
-})
-
--- taboo
+-- 
 require("ibl").setup()
-
-
--- telescope
-require("telescope").setup()
--- To get telescope-file-browser loaded and working with telescope,
--- you need to call load_extension, somewhere after setup function:
-require("telescope").load_extension "file_browser"
-vim.api.nvim_set_keymap(
-	"n",
-	"<space>fb",
-	":Telescope file_browser<CR>",
-	{ noremap = true }
-)
-
--- open file_browser with the path of the current buffer
-vim.api.nvim_set_keymap(
-	"n",
-	"<space>fb",
-	":Telescope file_browser path=%:p:h select_buffer=true<CR>",
-	{ noremap = true }
-)
 
 -- Copilot
 require("copilot").setup()
 
--- testaustime
-require("testaustime").setup({
-	token = os.getenv("TESTAUSTIME_TOKEN")
-})
+
