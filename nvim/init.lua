@@ -140,6 +140,7 @@ require("lazy").setup({
 		"nvim-lualine/lualine.nvim",
 		dependencies = { 'nvim-tree/nvim-web-devicons' }
 	},
+	{ "testaustime/testaustime.nvim", dependencies = { "nvim-lua/plenary.nvim" } }
 
 })
 
@@ -208,3 +209,8 @@ vim.api.nvim_set_keymap(
 
 -- Copilot
 require("copilot").setup()
+
+-- testaustime
+require("testaustime").setup({
+	token = os.getenv("TESTAUSTIME_TOKEN")
+})
