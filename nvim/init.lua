@@ -11,11 +11,30 @@ if not vim.loop.fs_stat(lazypath) then
 	})
 end
 vim.opt.rtp:prepend(lazypath)
-
-
+--
 vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
 
+local enable_ai = function()
+	local current_dir = vim.fn.getcwd()
+	local home_dir = os.getenv("HOME") or os.getenv("USERPROFILE")
+	local code_path = home_dir .. "/code"
+
+	-- if git repo is filed under ~/code/_private, do not allow AI
+	local private_path = code_path .. "/_private"
+	local is_code_private = string.find(current_dir, private_path) == 1
+
+	if is_code_private then
+		return false
+	else
+		return true
+	end
+end
+
 require("lazy").setup({
+	{
+		'nvim-lualine/lualine.nvim',
+		dependencies = { 'nvim-tree/nvim-web-devicons' }
+	},
 	{ "loctvl842/monokai-pro.nvim", opts = { filter = "spectrum" } },
 	"folke/which-key.nvim",
 	{ "folke/neoconf.nvim" },
@@ -56,16 +75,83 @@ require("lazy").setup({
 		"nvim-telescope/telescope-file-browser.nvim",
 		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
 	},
+	-- AI
+	{
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		build = ":Copilot auth",
+		event = "InsertEnter",
+		config = function()
+			require("copilot").setup({
+				panel = {
+					enabled = true,
+					auto_refresh = true,
+				},
+				suggestion = {
+					enabled = true,
+					auto_trigger = true,
+					--	accept = false, -- disable built-in keymapping
+				},
+			})
+
+			-- hide copilot suggestions when cmp menu is open
+			-- to prevent odd behavior/garbled up suggestions
+			local cmp_status_ok, cmp = pcall(require, "cmp")
+			if cmp_status_ok then
+				cmp.event:on("menu_opened", function()
+					vim.b.copilot_suggestion_hidden = true
+				end)
+
+				cmp.event:on("menu_closed", function()
+					vim.b.copilot_suggestion_hidden = false
+				end)
+			end
+
+			-- disable copilot if we are in a private project
+			if not enable_ai() then
+				vim.cmd("Copilot disable")
+			end
+		end,
+	},
+	--{
+	--	"jonahgoldwastaken/copilot-status.nvim",
+	--	dependencies = { "czbirenbaum/copilot.lua" }, -- or "/copilot.lua
+	--	lazy = true,
+	--	event = "BufReadPost",
+	--	config = function()
+	--		require("copilot_status").setup({
+	--			enabled = enable_ai,
+	--		})
+	--	end,
+	--},
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = { 'nvim-tree/nvim-web-devicons' }
+	},
+
 })
 
 require('colorscheme')
 
+-- Setup lualine
+require('lualine').setup()
+
 -- Enable lsp_zero for easy lsp support
 local lsp_zero = require('lsp-zero')
+lsp_zero.configure('rust_analyzer', {
+	settings = {
+		['rust-analyzer'] = {
+			checkOnSave = {
+				command = 'clippy'
+			},
+		},
+	},
+})
 lsp_zero.on_attach(function(client, bufnr)
 	-- see :help lsp-zero-keybindings
 	-- to learn the available actions
 	lsp_zero.default_keymaps({ buffer = bufnr })
+
 
 	-- make sure you use clients with formatting capabilities
 	-- otherwise you'll get a warning message
@@ -78,6 +164,7 @@ end)
 --- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
 require('mason').setup({})
 require('mason-lspconfig').setup({
+	ensure_installed = { "lua_ls", "rust_analyzer" },
 	handlers = {
 		lsp_zero.default_setup,
 	},
@@ -106,3 +193,6 @@ vim.api.nvim_set_keymap(
 	":Telescope file_browser path=%:p:h select_buffer=true<CR>",
 	{ noremap = true }
 )
+
+-- Copilot
+require("copilot").setup()
