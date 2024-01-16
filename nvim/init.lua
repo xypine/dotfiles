@@ -173,11 +173,33 @@ lsp_zero.on_attach(function(client, bufnr)
 	end
 end)
 
+local cmp = require('cmp')
+local cmp_action = require('lsp-zero').cmp_action()
+
+-- Setup cmp
+cmp.setup({
+	mapping = cmp.mapping.preset.insert({
+		-- `Enter` key to confirm completion
+		['<CR>'] = cmp.mapping.confirm({ select = false }),
+
+		-- Ctrl+Space to trigger completion menu
+		['<C-Space>'] = cmp.mapping.complete(),
+
+		-- Navigate between snippet placeholder
+		['<C-f>'] = cmp_action.luasnip_jump_forward(),
+		['<C-b>'] = cmp_action.luasnip_jump_backward(),
+
+		-- Scroll up and down in the completion documentation
+		['<C-u>'] = cmp.mapping.scroll_docs(-4),
+		['<C-d>'] = cmp.mapping.scroll_docs(4),
+	})
+})
+
 --- if you want to know more about lsp-zero and mason.nvim
 --- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
 require('mason').setup({})
 require('mason-lspconfig').setup({
-	ensure_installed = { "lua_ls", "rust_analyzer" },
+	ensure_installed = { "lua_ls", "rust_analyzer", "tsserver" },
 	handlers = {
 		lsp_zero.default_setup,
 	},
