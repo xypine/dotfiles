@@ -191,19 +191,69 @@ require("lazy").setup({
 		end,
 		dependencies = { "nvim-lua/plenary.nvim" },
 	}, -- diffview (diffing and merging git commits)
+	{ "norcalli/nvim-colorizer.lua" },
+	{
+		"f-person/git-blame.nvim",
+	}, -- git blame
+	{
+		"lvimuser/lsp-inlayhints.nvim"
+	},
+	{
+		"natecraddock/workspaces.nvim"
+	}, -- Workspace management
+	{
+		"sitiom/nvim-numbertoggle"
+	},
+	{
+		"folke/trouble.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+		},
+	}, -- Nice "problems" panel
+	{
+		"aznhe21/actions-preview.nvim",
+		requires = { "nvim-telescope/telescope.nvim" },
+		config = function()
+			vim.keymap.set({ "v", "n" }, "gf", require("actions-preview").code_actions)
+		end,
 
+	},
+	{
+		"natecraddock/sessions.nvim"
+	},
+	{
+		"nanotee/sqls.nvim"
+	}
 })
 
+-- Show line numbers
+vim.opt.number = true
+-- Load more complex configuration
 require('colorscheme')
 require("plugins.config.lualine")
 require("plugins.config.telescope")
 require("plugins.config.lsp")
 require("plugins.config.testaustime")
 
--- 
+--
 require("ibl").setup()
 
 -- Copilot
 require("copilot").setup()
 
+require("colorizer").setup()
+require("gitblame")
 
+require("workspaces").setup()
+require("sessions").setup()
+
+-- Trouble keymaps
+vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end)
+vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end)
+vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end)
+vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end)
+vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end)
+vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end)

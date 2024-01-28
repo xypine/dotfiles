@@ -1,5 +1,7 @@
 -- Enable lsp_zero for easy lsp support
 local lsp_zero = require('lsp-zero')
+local ih = require('lsp-inlayhints')
+ih.setup()
 lsp_zero.configure('rust_analyzer', {
 	settings = {
 		['rust-analyzer'] = {
@@ -50,6 +52,44 @@ require('mason').setup({})
 require('mason-lspconfig').setup({
 	ensure_installed = { "lua_ls", "rust_analyzer", "tsserver" },
 	handlers = {
-		lsp_zero.default_setup,
+		function(name)
+			local lsp = require('lspconfig')[name]
+			if lsp.manager then
+				-- if lsp.manager is defined it means the
+				-- language server was configured some place else
+				return
+			end
+
+			-- at this point lsp-zero has already applied
+			-- the "capabilities" options to lspconfig's defaults.
+			-- so there is no need to add them here manually.
+
+			lsp.setup({
+				settings = {
+					-- your settings here
+				}
+			})
+		end,
 	},
+})
+--[[
+require('lspconfig').sqls.setup{
+    on_attach = function(client, bufnr)
+        require('sqls').on_attach(client, bufnr)
+    end
+}
+--]]
+
+-- From https://www.reddit.com/r/neovim/comments/10ar5ut/trying_to_extend_each_servers_on_attach_with_a/
+local lsp_cmds = vim.api.nvim_create_augroup('lsp_cmds', { clear = true })
+vim.api.nvim_create_autocmd('LspAttach', {
+	group = lsp_cmds,
+	desc = 'My global on_attach',
+	callback = function(event)
+		local bufnr = event.buf
+		local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+		-- now do your thing.....
+		ih.on_attach(client, bufnr)
+	end
 })
