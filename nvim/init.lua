@@ -136,10 +136,6 @@ require("lazy").setup({
 	--		})
 	--	end,
 	--},
-	{
-		"nvim-lualine/lualine.nvim",
-		dependencies = { 'nvim-tree/nvim-web-devicons' }
-	},
 	{ "testaustime/testaustime.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 	-- treesitter configuration
 	{
@@ -215,7 +211,7 @@ require("lazy").setup({
 	}, -- Nice "problems" panel
 	{
 		"aznhe21/actions-preview.nvim",
-		requires = { "nvim-telescope/telescope.nvim" },
+		dependencies = { "nvim-telescope/telescope.nvim" },
 		config = function()
 			vim.keymap.set({ "v", "n" }, "gf", require("actions-preview").code_actions)
 		end,
@@ -226,7 +222,18 @@ require("lazy").setup({
 	},
 	{
 		"nanotee/sqls.nvim"
-	}
+	},
+	{
+		"ThePrimeagen/refactoring.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-telescope/telescope.nvim"
+		},
+		config = function()
+			require("refactoring").setup()
+		end,
+	},
 })
 
 -- Show line numbers
@@ -251,9 +258,14 @@ require("workspaces").setup()
 require("sessions").setup()
 
 -- Trouble keymaps
-vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end)
-vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end)
-vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end)
-vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end)
-vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end)
-vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end)
+vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end, { desc = "Toggle Trouble" })
+vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end,
+	{ desc = "Toggle Workspace Trouble" })
+vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end,
+	{ desc = "Toggle Document Trouble" })
+vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end,
+	{ desc = "Toggle Quickfix Trouble" })
+vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end,
+	{ desc = "Toggle Loclist Trouble" })
+vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end,
+	{ desc = "Toggle LSP References Trouble" })
