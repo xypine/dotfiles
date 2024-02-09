@@ -234,6 +234,13 @@ require("lazy").setup({
 			require("refactoring").setup()
 		end,
 	},
+	{
+		'stevearc/oil.nvim',
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			require("plugins.config.oil")
+		end,
+	} -- fs as a buffer
 })
 
 -- Show line numbers
