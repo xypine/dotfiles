@@ -240,7 +240,10 @@ require("lazy").setup({
 		config = function()
 			require("plugins.config.oil")
 		end,
-	} -- fs as a buffer
+	}, -- fs as a buffer
+	{
+		"j-hui/fidget.nvim",
+	}, -- Notifications and LSP progress
 })
 
 -- Show line numbers
@@ -263,6 +266,9 @@ require("gitblame")
 
 require("workspaces").setup()
 require("sessions").setup()
+
+-- Fidget
+local fidget = require("fidget").setup()
 
 -- Trouble keymaps
 vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end, { desc = "Toggle Trouble" })
