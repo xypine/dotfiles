@@ -1,5 +1,14 @@
 -- telescope
-require("telescope").setup()
+require("telescope").setup({
+	pickers = {
+		find_files = {
+			hidden = true,
+		},
+		file_browser = {
+			hidden = true,
+		},
+	},
+})
 
 -- nice default keymaps
 local builtin = require('telescope.builtin')
