@@ -74,6 +74,7 @@ require("lazy").setup({
 			{ 'hrsh7th/cmp-nvim-lsp' },
 		}
 	},
+	{ "lukas-reineke/lsp-format.nvim" },
 	-- Autocompletion
 	{
 		'hrsh7th/nvim-cmp',
@@ -81,7 +82,6 @@ require("lazy").setup({
 			{ 'L3MON4D3/LuaSnip' }
 		},
 	},
-	{ "lukas-reineke/lsp-format.nvim" },
 	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 	{
 		"nvim-telescope/telescope-file-browser.nvim",
@@ -125,17 +125,6 @@ require("lazy").setup({
 			end
 		end,
 	},
-	--{
-	--	"jonahgoldwastaken/copilot-status.nvim",
-	--	dependencies = { "czbirenbaum/copilot.lua" }, -- or "/copilot.lua
-	--	lazy = true,
-	--	event = "BufReadPost",
-	--	config = function()
-	--		require("copilot_status").setup({
-	--			enabled = enable_ai,
-	--		})
-	--	end,
-	--},
 	{ "testaustime/testaustime.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 	-- treesitter configuration
 	{
@@ -244,6 +233,23 @@ require("lazy").setup({
 	{
 		"j-hui/fidget.nvim",
 	}, -- Notifications and LSP progress
+	{
+		"xiyaowong/transparent.nvim"
+	}, -- Quick toggle for background transparency
+	{
+		'tamton-aquib/duck.nvim',
+		config = function()
+			vim.keymap.set('n', '<leader>dd', function() require("duck").hatch() end, {
+				desc = "Hatch a duck"
+			})
+			vim.keymap.set('n', '<leader>dk', function() require("duck").cook() end, {
+				desc = "Cook a duck"
+			})
+			vim.keymap.set('n', '<leader>da', function() require("duck").cook_all() end, {
+				desc = "Cook all ducks"
+			})
+		end
+	}, -- Fun nonsense
 })
 
 -- Show line numbers
@@ -266,6 +272,7 @@ require("gitblame")
 
 require("workspaces").setup()
 require("sessions").setup()
+require("transparent").setup()
 
 -- Fidget
 local fidget = require("fidget").setup()
