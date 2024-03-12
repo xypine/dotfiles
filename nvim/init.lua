@@ -234,6 +234,12 @@ require("lazy").setup({
 		"j-hui/fidget.nvim",
 	}, -- Notifications and LSP progress
 	{
+		"NMAC427/guess-indent.nvim",
+		config = function()
+			require("guess-indent").setup {}
+		end
+	}, -- Automatically guess indent settings
+	{
 		"xiyaowong/transparent.nvim"
 	}, -- Quick toggle for background transparency
 	{
