@@ -82,7 +82,13 @@ require("lazy").setup({
 			{ 'L3MON4D3/LuaSnip' }
 		},
 	},
-	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+	{
+		'shellRaining/hlchunk.nvim',
+		event = { "UIEnter" },
+		config = function()
+			require("hlchunk").setup({})
+		end,
+	},
 	{
 		"nvim-telescope/telescope-file-browser.nvim",
 		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
@@ -273,9 +279,6 @@ require("plugins.config.lualine")
 require("plugins.config.telescope")
 require("plugins.config.lsp")
 require("plugins.config.testaustime")
-
---
-require("ibl").setup()
 
 -- Copilot
 require("copilot").setup()
