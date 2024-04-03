@@ -234,13 +234,20 @@ require("lazy").setup({
 		"j-hui/fidget.nvim",
 	}, -- Notifications and LSP progress
 	{
+		"google/executor.nvim",
+		dependencies = { "MunifTanjim/nui.nvim" },
+		config = function()
+			require("executor").setup({})
+		end,
+	}, -- Execute commands in the background
+	{
 		"NMAC427/guess-indent.nvim",
 		config = function()
 			require("guess-indent").setup {}
 		end
 	}, -- Automatically guess indent settings
 	{
-		"xiyaowong/transparent.nvim"
+		"xiyaowong/transparent.nvim",
 	}, -- Quick toggle for background transparency
 	{
 		'tamton-aquib/duck.nvim',
@@ -295,3 +302,7 @@ vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist"
 	{ desc = "Toggle Loclist Trouble" })
 vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end,
 	{ desc = "Toggle LSP References Trouble" })
+
+-- Executor keymaps
+vim.api.nvim_set_keymap("n", "<leader>er", ":ExecutorRun<CR>", {})
+vim.api.nvim_set_keymap("n", "<leader>ev", ":ExecutorToggleDetail<CR>", {})
