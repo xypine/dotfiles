@@ -12,6 +12,7 @@ require("telescope").setup({
 
 -- nice default keymaps
 local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>fr', builtin.resume, { desc = "Reshow last search" })
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "Find files" })
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = "Find in files" })
 vim.keymap.set('n', '<leader>fl', builtin.buffers, { desc = "Find buffers" })
