@@ -342,6 +342,12 @@ require("lazy").setup({
 		end,
 	},
 	{
+		"t-troebst/perfanno.nvim",
+		config = function()
+			require("perfanno").setup()
+		end,
+	}, -- Flamegraph results in editor
+	{
 		'stevearc/oil.nvim',
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
