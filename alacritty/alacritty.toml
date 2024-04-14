@@ -8,6 +8,7 @@ y = 0
 
 [font.normal]
 family = "FiraCode Nerd Font"
+#family = "ComicShannsMono Nerd Font"
 
 [colors.primary]
 background = "0x2D2A2E"
