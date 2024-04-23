@@ -408,6 +408,11 @@ vim.opt.smartcase = true
 vim.opt.updatetime = 250
 vim.opt.timeoutlen = 300
 
+vim.keymap.set("i", "<C-h>", "<Left>", { noremap = true })
+vim.keymap.set("i", "<C-j>", "<Down>", { noremap = true })
+vim.keymap.set("i", "<C-k>", "<Up>", { noremap = true })
+vim.keymap.set("i", "<C-l>", "<Right>", { noremap = true })
+
 -- Highlight search results, clear search results on <Esc>
 vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
