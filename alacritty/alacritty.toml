@@ -1,5 +1,5 @@
 [window]
-opacity = 0.95
+opacity = 0.8
 blur = true
 decorations = "none"
 
@@ -19,7 +19,7 @@ family = "FiraCode Nerd Font"
 #family = "ComicShannsMono Nerd Font"
 
 [colors.primary]
-background = "0x2D2A2E"
+background = "0x1c1c1c"
 foreground = "0xfff1f3"
 
 [colors.normal]

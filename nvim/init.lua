@@ -32,10 +32,15 @@ end
 
 require("lazy").setup({
 	{
-		'nvim-lualine/lualine.nvim',
-		dependencies = { 'nvim-tree/nvim-web-devicons' }
+		"loctvl842/monokai-pro.nvim",
+		opts = {
+			filter = "spectrum"
+		}
 	},
-	{ "loctvl842/monokai-pro.nvim",       opts = { filter = "spectrum" } },
+	{
+		'nvim-lualine/lualine.nvim',
+		dependencies = { 'nvim-tree/nvim-web-devicons', "loctvl842/monokai-pro.nvim" }
+	},
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
@@ -57,6 +62,15 @@ require("lazy").setup({
 		config = function()
 			require 'alpha'.setup(require 'alpha.themes.startify'.config)
 		end
+	},
+	{
+		"folke/todo-comments.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+		}
 	},
 	{
 		'akinsho/bufferline.nvim',
@@ -184,6 +198,7 @@ require("lazy").setup({
 			}
 		end,
 	},
+	-- Highlights the current chunk of text
 	{
 		'shellRaining/hlchunk.nvim',
 		event = { "UIEnter" },
@@ -267,8 +282,21 @@ require("lazy").setup({
 		config = function()
 			require("plugins.config.comment")
 		end,
-	}, -- commenting plugin
-
+	},
+	-- Bar at the top showing location
+	{
+		"utilyre/barbecue.nvim",
+		name = "barbecue",
+		version = "*",
+		dependencies = {
+			"SmiteshP/nvim-navic",
+			"nvim-tree/nvim-web-devicons",
+			"loctvl842/monokai-pro.nvim"
+		},
+		opts = {
+			show_basename = false, -- don't show filename as it is already shown in the bufferline
+		},
+	},
 	-- auto closing
 	{
 		"windwp/nvim-autopairs",
