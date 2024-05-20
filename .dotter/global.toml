@@ -1,7 +1,7 @@
 [helpers]
 
 [default]
-depends = ["alacritty", "nvim", "tmux"]
+depends = ["alacritty", "nvim", "tmux", "sway"]
 
 [default.files]
 [default.variables]
@@ -15,3 +15,6 @@ nvim = "~/.config/nvim"
 
 [tmux.files]
 "tmux/.tmux.conf" = "~/.tmux.conf"
+
+[sway.files]
+sway = "~/.config/sway/"
