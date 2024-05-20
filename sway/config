@@ -12,7 +12,6 @@ set $rofi_cmd rofi \
         -terminal '$term'
 set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
 
-output * bg /usr/share/backgrounds/default.png fill
 
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
