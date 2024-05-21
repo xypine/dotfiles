@@ -32,14 +32,24 @@ end
 
 require("lazy").setup({
 	{
-		"loctvl842/monokai-pro.nvim",
+		"f4z3r/gruvbox-material.nvim",
+		name = "gruvbox-material",
+		lazy = false,
+		priority = 1000,
 		opts = {
-			filter = "spectrum"
+			italics = true,
+			contrast = "hard",
+			comments = {
+				italics = true,
+			},
+			background = {
+				transparent = false,
+			},
 		}
 	},
 	{
 		'nvim-lualine/lualine.nvim',
-		dependencies = { 'nvim-tree/nvim-web-devicons', "loctvl842/monokai-pro.nvim" }
+		dependencies = { 'nvim-tree/nvim-web-devicons', "f4z3r/gruvbox-material.nvim" }
 	},
 	{
 		"folke/which-key.nvim",
@@ -291,7 +301,7 @@ require("lazy").setup({
 		dependencies = {
 			"SmiteshP/nvim-navic",
 			"nvim-tree/nvim-web-devicons",
-			"loctvl842/monokai-pro.nvim"
+			"f4z3r/gruvbox-material.nvim"
 		},
 		opts = {
 			show_basename = false, -- don't show filename as it is already shown in the bufferline
