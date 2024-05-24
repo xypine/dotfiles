@@ -1,7 +1,7 @@
 [helpers]
 
 [default]
-depends = ["alacritty", "nvim", "tmux", "sway", "waybar", "rofi"]
+depends = ["alacritty", "nvim", "tmux", "sway", "waybar", "rofi", "dunst"]
 
 [default.files]
 [default.variables]
@@ -24,3 +24,6 @@ waybar = "~/.config/waybar/"
 
 [rofi.files]
 rofi = "~/.config/rofi/"
+
+[dunst.files]
+dunst = "~/.config/dunst/"
