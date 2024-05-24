@@ -1,7 +1,7 @@
 [helpers]
 
 [default]
-depends = ["alacritty", "nvim", "tmux", "sway", "rofi"]
+depends = ["alacritty", "nvim", "tmux", "sway", "waybar", "rofi"]
 
 [default.files]
 [default.variables]
@@ -18,6 +18,9 @@ nvim = "~/.config/nvim"
 
 [sway.files]
 sway = "~/.config/sway/"
+
+[waybar.files]
+waybar = "~/.config/waybar/"
 
 [rofi.files]
 rofi = "~/.config/rofi/"
