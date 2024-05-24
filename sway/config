@@ -12,6 +12,15 @@ set $rofi_cmd rofi \
         -terminal '$term'
 set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
 
+# Clipboard manager with image support
+set $local_bin ~/.local/bin
+set $cliphist $local_bin/cliphist
+exec_always wl-paste --watch $cliphist store
+exec_always wl-paste --type image --watch $cliphist store
+set $cliphist_menu "$local_bin/cliphist-rofi-img | rofi -dmenu -p \"Clipboard\" -i | $cliphist decode | ifne sh -c 'cat | wl-copy'"
+bindsym $mod+p exec $cliphist_menu
+# Color picker
+bindsym $mod+Shift+p exec grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | tail -n 1 | cut -d ' ' -f 4 | wl-copy
 
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill

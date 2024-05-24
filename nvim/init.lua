@@ -485,7 +485,7 @@ require("transparent").setup()
 local bufferline = require("bufferline")
 bufferline.setup({
 	options = {
-		separator_style = "slope",
+		-- separator_style = "slope",
 	}
 })
 
