@@ -1,7 +1,17 @@
 [helpers]
 
 [default]
-depends = ["alacritty", "nvim", "tmux", "sway", "waybar", "rofi", "dunst"]
+depends = [
+	"alacritty",
+	"nvim",
+	"tmux",
+	"sway",
+	"waybar",
+	"rofi",
+	"dunst",
+	"sddm-theme",
+	"sddm-conf",
+]
 
 [default.files]
 [default.variables]
@@ -27,3 +37,9 @@ rofi = "~/.config/rofi/"
 
 [dunst.files]
 dunst = "~/.config/dunst/"
+
+[sddm-theme.files]
+"sddm/themes" = { target = "/etc/sddm/themes", type = "template", owner = "root" }
+
+[sddm-conf.files]
+"sddm/config.d" = { target = "/etc/sddm.conf.d/", type = "template", owner = "root" }
