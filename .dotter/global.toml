@@ -6,6 +6,7 @@ depends = [
 	"nvim",
 	"tmux",
 	"sway",
+	"swaylock",
 	"waybar",
 	"rofi",
 	"dunst",
@@ -28,6 +29,9 @@ nvim = "~/.config/nvim"
 
 [sway.files]
 sway = "~/.config/sway/"
+
+[swaylock.files]
+swaylock = "~/.config/swaylock/"
 
 [waybar.files]
 waybar = "~/.config/waybar/"
