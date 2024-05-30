@@ -348,6 +348,38 @@ require("lazy").setup({
 	{
 		"folke/trouble.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
+		keys = {
+			{
+				"<leader>xx",
+				"<cmd>Trouble diagnostics toggle<cr>",
+				desc = "Diagnostics (Trouble)",
+			},
+			{
+				"<leader>xX",
+				"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+				desc = "Buffer Diagnostics (Trouble)",
+			},
+			{
+				"<leader>cs",
+				"<cmd>Trouble symbols toggle focus=false<cr>",
+				desc = "Symbols (Trouble)",
+			},
+			{
+				"<leader>cl",
+				"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+				desc = "LSP Definitions / references / ... (Trouble)",
+			},
+			{
+				"<leader>xL",
+				"<cmd>Trouble loclist toggle<cr>",
+				desc = "Location List (Trouble)",
+			},
+			{
+				"<leader>xQ",
+				"<cmd>Trouble qflist toggle<cr>",
+				desc = "Quickfix List (Trouble)",
+			},
+		},
 		opts = {
 			-- your configuration comes here
 			-- or leave it empty to use the default settings
@@ -395,13 +427,6 @@ require("lazy").setup({
 	{
 		"j-hui/fidget.nvim",
 	}, -- Notifications and LSP progress
-	{
-		"google/executor.nvim",
-		dependencies = { "MunifTanjim/nui.nvim" },
-		config = function()
-			require("executor").setup({})
-		end,
-	}, -- Execute commands in the background
 	{
 		"NMAC427/guess-indent.nvim",
 		config = function()
@@ -491,20 +516,3 @@ bufferline.setup({
 
 -- Fidget
 local fidget = require("fidget").setup()
-
--- Trouble keymaps
-vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end, { desc = "Toggle Trouble" })
-vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end,
-	{ desc = "Toggle Workspace Trouble" })
-vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end,
-	{ desc = "Toggle Document Trouble" })
-vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end,
-	{ desc = "Toggle Quickfix Trouble" })
-vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end,
-	{ desc = "Toggle Loclist Trouble" })
-vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end,
-	{ desc = "Toggle LSP References Trouble" })
-
--- Executor keymaps
-vim.api.nvim_set_keymap("n", "<leader>er", ":ExecutorRun<CR>", {})
-vim.api.nvim_set_keymap("n", "<leader>ev", ":ExecutorToggleDetail<CR>", {})
