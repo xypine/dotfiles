@@ -12,6 +12,8 @@ depends = [
 	"dunst",
 	"sddm-theme",
 	"sddm-conf",
+	"darkman",
+	"xdg-desktop-portal",
 ]
 
 [default.files]
@@ -47,3 +49,9 @@ dunst = "~/.config/dunst/"
 
 [sddm-conf.files]
 "sddm/config.d" = { target = "/etc/sddm.conf.d/", type = "template", owner = "root" }
+
+[darkman.files]
+darkman = "~/.config/darkman"
+
+[xdg-desktop-portal.files]
+xdg-desktop-portal = "~/.config/xdg-desktop-portal"
