@@ -8,6 +8,7 @@
 
 * {
 	gruv0: #282828;
+    gruv0-transparent: rgba(40, 40, 40, 0.75);
 	gruv1: #32302f;
 	gruv2: #45403d;
 	gruv3: #5a524c;
@@ -31,12 +32,11 @@
     yellowdark: #b47109;
 
     foreground:  @gruv9;
-    background-color:  transparent;
+    background-color:  rgba(0, 0, 0, 0%);
     
     highlight: underline bold #eee0b7;
 
-    transparent: rgba(46,52,64,0);
-
+    transparent: rgba(0, 0, 0, 0%);
 }
 
 window {
@@ -67,8 +67,8 @@ message {
 inputbar {
     color: @gruv6;
     padding: 14px;
-    background-color: @gruv0;
-    border-color: @gruv0;
+    background-color: @gruv0-transparent;
+    border-color: @gruv0-transparent;
 
     border: 1px;
     border-radius: 10px 10px 0px 0px;
@@ -123,7 +123,7 @@ element.selected.urgent {
 }
 
 element.alternate.normal {
-    background-color: @transparent;
+    background-color: @gruv0;
 }
 
 element-text, element-icon {
