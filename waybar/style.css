@@ -1,4 +1,9 @@
 * {
+    /* ignore current gtk theme */
+    all: initial;
+}
+
+* {
     border: none;
     border-radius: 0px;
     font-family: "BlexMono Nerd Font";
@@ -9,20 +14,22 @@
 window#waybar {
     border-style: inset;
     border: 2px solid rgba(104, 157, 106, 0.75);
-    background: rgba(29, 32, 33, 0.3);
+    background: rgba(29, 32, 33, 0.2);
     color: #ebdbb2;
     border-radius: 8px;
 }
 
-/* tooltip { */
-/*     background-color: rgba(0, 10, 5, 0.8); */
-/*     text-shadow: none; */
-/*     border-radius: 4px; */
-/* } */
-/*  */
-/* tooltip * { */
-/*     text-shadow: none; */
-/* } */
+tooltip {
+    color: #ebdbb2;
+    background-color: rgba(0, 10, 5, 0.9);
+    text-shadow: none;
+    border-radius: 4px;
+}
+
+tooltip * {
+    color: #ebdbb2;
+    text-shadow: none;
+}
 
 #workspaces,
 #clock,
@@ -32,6 +39,10 @@ window#waybar {
 }
 
 /* Workspace Buttons */
+#workspaces button {
+    min-width: 3.5em;
+}
+
 #workspaces button label {
     color: #689d6a;
 }
@@ -59,11 +70,13 @@ window#waybar {
 #mode,
 #window,
 #power-profiles-daemon {
+    color: #ebdbb2;
     padding: 5px 5px;
     margin: 0 10px;
 }
 
 #idle_inhibitor {
+    color: #ebdbb2;
     padding: 0 10px;
     min-width: 2em;
     margin: 0px;
@@ -73,7 +86,6 @@ window#waybar {
 
 #idle_inhibitor.activated {
     background-color: rgba(104, 157, 106, 0.75);
-    color: #1d2021;
 }
 
 
@@ -104,13 +116,18 @@ window#waybar {
 }
 
 #tray menu {
-    padding: 0;
+    padding: .25em .5em;
     color: #ebdbb2;
     background-color: rgba(29, 32, 33, 0.95);
     border-radius: 4px;
 }
 
-#tray menu>*:hover {
-    background-color: #ebdbb2;
-    color: #1d2021;
+#tray menu * {
+    color: #ebdbb2;
+    border-radius: 4px;
+    padding: 0.1em 0.25em;
+}
+
+menu>*:hover {
+    background-color: rgba(235, 219, 178, 0.1);
 }
