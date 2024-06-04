@@ -13,10 +13,10 @@
 
 window#waybar {
     border-style: inset;
-    border: 2px solid rgba(104, 157, 106, 0.75);
+    border: 2px solid rgba(104, 157, 106, 0.333);
     background: rgba(29, 32, 33, 0.2);
     color: #ebdbb2;
-    border-radius: 8px;
+    border-radius: 16px;
 }
 
 tooltip {
