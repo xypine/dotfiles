@@ -92,4 +92,8 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+# scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
 include ./config.d/*.conf
