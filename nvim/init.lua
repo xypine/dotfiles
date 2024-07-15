@@ -103,6 +103,12 @@ require("lazy").setup({
 		}
 	},
 	{ "lukas-reineke/lsp-format.nvim" },
+	{
+		"danymat/neogen",
+		config = true,
+		-- Uncomment next line if you want to follow only stable versions
+		-- version = "*"
+	},
 	-- Autocompletion
 	{ -- Autocompletion
 		'hrsh7th/nvim-cmp',
