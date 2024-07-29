@@ -16,33 +16,33 @@
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
 
-    # plymouth = {
-    #   enable = true;
-    #   # theme = "red_loader";
-    #   # themePackages = with pkgs; [
-    #   #   # By default we would install all themes
-    #   #   (adi1090x-plymouth-themes.override {
-    #   #     selected_themes = [ "red_loader" ];
-    #   #   })
-    #   # ];
-    # };
+    plymouth = {
+      enable = true;
+      # theme = "red_loader";
+      # themePackages = with pkgs; [
+      #   # By default we would install all themes
+      #   (adi1090x-plymouth-themes.override {
+      #     selected_themes = [ "red_loader" ];
+      #   })
+      # ];
+    };
 
-    # # Enable "Silent Boot"
-    # consoleLogLevel = 0;
-    # initrd.verbose = false;
-    # kernelParams = [
-    #   "quiet"
-    #   "splash"
-    #   "boot.shell_on_fail"
-    #   "loglevel=3"
-    #   "rd.systemd.show_status=false"
-    #   "rd.udev.log_level=3"
-    #   "udev.log_priority=3"
-    # ];
-    # # Hide the OS choice for bootloaders.
-    # # It's still possible to open the bootloader list by pressing any key
-    # # It will just not appear on screen unless a key is pressed
-    # loader.timeout = 0;
+    # Enable "Silent Boot"
+    consoleLogLevel = 0;
+    initrd.verbose = false;
+    kernelParams = [
+      "quiet"
+      "splash"
+      "boot.shell_on_fail"
+      "loglevel=3"
+      "rd.systemd.show_status=false"
+      "rd.udev.log_level=3"
+      "udev.log_priority=3"
+    ];
+    # Hide the OS choice for bootloaders.
+    # It's still possible to open the bootloader list by pressing any key
+    # It will just not appear on screen unless a key is pressed
+    loader.timeout = 0;
   };
 
   # Set your time zone.
@@ -269,6 +269,9 @@
     package = pkgs.hackneyed;
     name = "Hackneyed";
     size = 24;
+  };
+  stylix.targets.plymouth = {
+    enable = false;
   };
 
   # Copy the NixOS configuration file and link it from the resulting system
