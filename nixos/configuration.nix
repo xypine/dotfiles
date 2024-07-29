@@ -249,6 +249,7 @@
 
   stylix.enable = true;
   stylix.image = pkgs.fetchurl {
+    name = "ferns.jpg";
     url = "https://i.redd.it/uhzbtokol3p41.jpg";
     sha256 = "a0bb008e0e66addbe5f1e1162ab804fe3f9654d0622f0e40217a59efdffd8854";
   };
