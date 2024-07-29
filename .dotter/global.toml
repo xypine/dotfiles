@@ -2,7 +2,6 @@
 
 [default]
 depends = [
-	"alacritty",
 	"nvim",
 	"tmux",
 	"sway",
@@ -10,14 +9,17 @@ depends = [
 	"waybar",
 	"rofi",
 	"dunst",
-	"sddm-theme",
-	"sddm-conf",
 	"darkman",
 	"xdg-desktop-portal",
 ]
 
 [default.files]
 [default.variables]
+
+[legacy]
+depends = [
+	"alacritty",
+]
 
 
 [alacritty.files]
@@ -55,3 +57,6 @@ darkman = "~/.config/darkman"
 
 [xdg-desktop-portal.files]
 xdg-desktop-portal = "~/.config/xdg-desktop-portal"
+
+[nixos.files]
+nixos = { target = "/etc/nixos", type = "template", owner = "root" }

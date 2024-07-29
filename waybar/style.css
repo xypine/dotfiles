@@ -131,3 +131,7 @@ tooltip * {
 menu>*:hover {
     background-color: rgba(235, 219, 178, 0.1);
 }
+
+#power-profiles-daemon {
+    padding-right: 14px
+}

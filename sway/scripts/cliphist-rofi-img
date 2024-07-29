@@ -3,7 +3,7 @@
 tmp_dir="/tmp/cliphist"
 rm -rf "$tmp_dir"
 
-cliphist="$HOME/.local/bin/cliphist"
+cliphist="cliphist"
 
 if [[ -n "$1" ]]; then
     $cliphist decode <<<"$1" | wl-copy
