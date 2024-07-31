@@ -61,7 +61,7 @@
             "critical": 15
         },
         "format": "{capacity}% {icon}",
-        "format-icons": ["", "", "", "", ""],
+        "format-icons": [" ", " ", " ", " ", " "],
         "max-length": 25
     },
     "power-profiles-daemon": {
@@ -69,34 +69,34 @@
       "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
       "tooltip": true,
       "format-icons": {
-        "default": "",
-        "performance": "",
-        "balanced": "",
-        "power-saver": ""
+        "default": " ",
+        "performance": " ",
+        "balanced": " ",
+        "power-saver": " "
       }
     },
 
     "network": {
         // "interface": "wlp2s0", // (Optional) To force the use of this interface
-        // "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-wifi": "{ipaddr}",
-        "format-ethernet": "{ifname}: {ipaddr} ",
-        "format-disconnected": "Disconnected ⚠",
-        "tooltip-format": "gateway {gwaddr}",
+        // "format-wifi": "{essid} ({signalStrength}%)  ",
+        "format-wifi": "{ipaddr}  ",
+        "format-ethernet": "{ipaddr}  ", // ifname
+        "format-disconnected": "Disconnected ⚠ ",
+        "tooltip-format": "gateway {gwaddr}\nifname {ifname}",
     },
     "pulseaudio": {
         //"scroll-step": 1,
         "format": "{volume}% {icon}",
         "format-bluetooth": "{volume}% {icon}",
-        "format-muted": "",
+        "format-muted": " ",
         "format-icons": {
-            "headphones": "",
-            "handsfree": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", ""]
+            "headphones": " ",
+            "handsfree": " ",
+            "headset": " ",
+            "phone": " ",
+            "portable": " ",
+            "car": " ",
+            "default": [" ", " "]
         },
         "on-click": "pavucontrol"
     },

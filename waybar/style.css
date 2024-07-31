@@ -1,63 +1,63 @@
 * {
-    /* ignore current gtk theme */
-    all: initial;
+  /* ignore current gtk theme */
+  all: initial;
 }
 
 * {
-    border: none;
-    border-radius: 0px;
-    font-family: "BlexMono Nerd Font";
-    font-size: 16px;
-    min-height: 0;
+  border: none;
+  border-radius: 0px;
+  font-family: "BlexMono Nerd Font";
+  font-size: 16px;
+  min-height: 0;
 }
 
 window#waybar {
-    border-style: inset;
-    border: 2px solid rgba(104, 157, 106, 0.333);
-    background: rgba(29, 32, 33, 0.2);
-    color: #ebdbb2;
-    border-radius: 16px;
+  border-style: inset;
+  border: 2px solid rgba(104, 157, 106, 0.333);
+  background: rgba(29, 32, 33, 0.2);
+  color: #ebdbb2;
+  border-radius: 16px;
 }
 
 tooltip {
-    color: #ebdbb2;
-    background-color: rgba(0, 10, 5, 0.9);
-    text-shadow: none;
-    border-radius: 4px;
+  color: #ebdbb2;
+  background-color: rgba(0, 10, 5, 0.9);
+  text-shadow: none;
+  border-radius: 4px;
 }
 
 tooltip * {
-    color: #ebdbb2;
-    text-shadow: none;
+  color: #ebdbb2;
+  text-shadow: none;
 }
 
 #workspaces,
 #clock,
 #custom-music,
 #window {
-    font-weight: 800;
+  font-weight: 800;
 }
 
 /* Workspace Buttons */
 #workspaces button {
-    min-width: 3.5em;
+  min-width: 3.5em;
 }
 
 #workspaces button label {
-    color: #689d6a;
+  color: #689d6a;
 }
 
 #workspaces button.focused label {
-    color: #1d2021;
+  color: #1d2021;
 }
 
 #workspaces button.focused {
-    background: rgba(104, 157, 106, 0.75);
+  background: rgba(104, 157, 106, 0.75);
 }
 
 #mode {
-    background-color: rgba(204, 36, 29, 0.75);
-    color: white;
+  background-color: rgba(204, 36, 29, 0.75);
+  color: white;
 }
 
 #clock,
@@ -70,68 +70,61 @@ tooltip * {
 #mode,
 #window,
 #power-profiles-daemon {
-    color: #ebdbb2;
-    padding: 5px 5px;
-    margin: 0 10px;
+  color: #ebdbb2;
+  padding: 5px 5px;
+  margin: 0 10px;
 }
 
 #idle_inhibitor {
-    color: #ebdbb2;
-    padding: 0 10px;
-    min-width: 2em;
-    margin: 0px;
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
+  color: #ebdbb2;
+  padding: 0 10px;
+  min-width: 2em;
+  margin: 0px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
 
 #idle_inhibitor.activated {
-    background-color: rgba(104, 157, 106, 0.75);
+  background-color: rgba(104, 157, 106, 0.75);
 }
 
-
 #custom-music {
-    color: #b8bb26;
-    margin: 0 15px;
-    padding: 0 20px;
-    border-bottom: 2px solid #b8bb26;
+  color: #b8bb26;
+  margin: 0 15px;
+  padding: 0 20px;
+  border-bottom: 2px solid #b8bb26;
 }
 
 #clock {
-    margin: 0;
-    color: #fabd2f;
-    border-bottom: 2px solid #fabd2f;
+  margin: 0;
+  color: #fabd2f;
+  border-bottom: 2px solid #fabd2f;
 }
-
 
 #network.disconnected {
-    color: #cc241d;
-    border-bottom: 2px solid #cc241d;
+  color: #cc241d;
+  border-bottom: 2px solid #cc241d;
 }
 
-
 #pulseaudio.muted {
-    padding: 0 20px;
-    color: #cc241d;
-    border-bottom: 2px solid #cc241d;
+  padding: 0 20px;
+  color: #cc241d;
+  border-bottom: 2px solid #cc241d;
 }
 
 #tray menu {
-    padding: .25em .5em;
-    color: #ebdbb2;
-    background-color: rgba(29, 32, 33, 0.95);
-    border-radius: 4px;
+  padding: 0.25em 0.5em;
+  color: #ebdbb2;
+  background-color: rgba(29, 32, 33, 0.95);
+  border-radius: 4px;
 }
 
 #tray menu * {
-    color: #ebdbb2;
-    border-radius: 4px;
-    padding: 0.1em 0.25em;
+  color: #ebdbb2;
+  border-radius: 4px;
+  padding: 0.1em 0.25em;
 }
 
-menu>*:hover {
-    background-color: rgba(235, 219, 178, 0.1);
-}
-
-#power-profiles-daemon {
-    padding-right: 14px
+menu > *:hover {
+  background-color: rgba(235, 219, 178, 0.1);
 }
