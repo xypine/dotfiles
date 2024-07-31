@@ -153,6 +153,9 @@
 
     brightnessctl
 
+    wayvnc # VNC Server
+    wlvncc # VNC Client
+
     protonup
     gamemode
     mangohud
