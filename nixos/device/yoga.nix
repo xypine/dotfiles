@@ -9,6 +9,11 @@
   # Enable networking
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
+  # Enable bluetooth
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  services.blueman.enable = true;
+
   # Power profiles (performance, balanced, powersave)
   services.power-profiles-daemon.enable = true;
 
@@ -30,8 +35,9 @@
   };
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  # 5900: VNC
+  networking.firewall.allowedTCPPorts = [ 5900 ];
+  networking.firewall.allowedUDPPorts = [ 5900 ];
   # Or disable the firewall altogether.
   networking.firewall.enable = true;
 }
