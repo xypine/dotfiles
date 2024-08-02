@@ -25,6 +25,12 @@ bindsym $mod+Shift+p exec grim -g "$(slurp -p)" -t ppm - | convert - -format '%[
 # Screenshots
 bindsym $mod+Shift+s exec grim -g "$(slurp -d)" - | wl-copy --type image/png
 
+# Autotiling
+exec_always autotiling
+
+# Toggle waybar
+bindsym $mod+x exec pkill waybar || waybar
+
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec $menu
@@ -64,6 +70,9 @@ bindsym $mod+Shift+7 move container to workspace number 7
 bindsym $mod+Shift+8 move container to workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9
 bindsym $mod+Shift+0 move container to workspace number 10
+
+bindsym $mod+control+$left move container to workspace next, workspace next
+bindsym $mod+control+$right move container to workspace prev, workspace next
 
 bindsym $mod+b splith
 bindsym $mod+v splitv

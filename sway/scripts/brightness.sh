@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 # Originally from https://github.com/rockowitz/ddcutil/issues/63
