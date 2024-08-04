@@ -92,6 +92,9 @@
     qbittorrent
     discord
     croc
+
+    # MPRIS support
+    playerctl
   ];
 
   # basic configuration of git, please change to your own

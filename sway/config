@@ -24,6 +24,8 @@ bindsym $mod+p exec $cliphist_menu
 bindsym $mod+Shift+p exec grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | tail -n 1 | cut -d ' ' -f 4 | wl-copy
 # Screenshots
 bindsym $mod+Shift+s exec grim -g "$(slurp -d)" - | wl-copy --type image/png
+# Toggle waybar
+bindsym $mod+x exec pkill waybar || waybar
 
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
