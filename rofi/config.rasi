@@ -9,6 +9,8 @@ configuration {
     display-window: "󱂬 window:";
     display-combi:  "󰕘 combi:";
     display-filebrowser: "󰉋 filebrowser:";
+
+    modes: [window,drun,run,ssh,combi];
 }
 
 @theme "~/.config/rofi/gruvbox-material.rasi"

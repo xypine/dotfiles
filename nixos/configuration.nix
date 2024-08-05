@@ -146,6 +146,7 @@
     cliphist
     waybar
     rofi-wayland
+    rofimoji
     dunst
     swaybg
     lxqt.lxqt-policykit
@@ -163,6 +164,11 @@
     docker-compose
 
     networkmanagerapplet
+  ];
+  nixpkgs.overlays = [
+    (final: prev: {
+      rofimoji = prev.rofimoji.override { rofi = prev.rofi-wayland; };
+    })
   ];
 
   services.snapserver = {
@@ -265,6 +271,10 @@
     monospace = {
       package = pkgs.nerdfonts.override { fonts = [ "IBMPlexMono" ]; };
       name = "BlexMono Nerd Font";
+    };
+    emoji = {
+      package = pkgs.noto-fonts-emoji;
+      name = "Noto Color Emoji";
     };
   };
   # TODO: Figure out a way to compile this in dark mode
