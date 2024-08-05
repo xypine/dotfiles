@@ -166,7 +166,7 @@
   ];
 
   services.snapserver = {
-    enable = false;
+    enable = true;
     codec = "flac";
     streams = {
       pipewire = {
@@ -196,11 +196,12 @@
 
   # Enable zsh
   programs.zsh.enable = true;
-  programs.zsh.ohMyZsh = {
-    enable = true;
-    plugins = [ "git" "sudo" "docker" "kubectl" "rust" "golang" "fd" ];
-    theme = "tjkirch";
-  };
+  # Replaced by starship in home.nix
+  # programs.zsh.ohMyZsh = {
+  #   enable = true;
+  #   plugins = [ "git" "sudo" "docker" "kubectl" "rust" "golang" "fd" ];
+  #   theme = "tjkirch";
+  # };
 
   # Required for swaylock to accept the correct password
   security.pam.services.swaylock = { };

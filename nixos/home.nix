@@ -146,6 +146,23 @@
       xvim = "nix run ~/coding/nixvim-config";
     };
   };
+  # Cooler shell history
+  programs.atuin = {
+    enable = true;
+    flags = [
+      "--disable-up-arrow"
+    ];
+    settings = {
+      auto_sync = true;
+    };
+  };
+
+  programs.starship = {
+    enable = true;
+    settings = (with builtins; fromTOML (readFile ./starship_preset.toml)) // {
+      # Overrides here
+    };
+  };
 
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage

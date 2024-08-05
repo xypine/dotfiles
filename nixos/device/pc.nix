@@ -18,7 +18,7 @@
     serverProperties = {
       server-port = 25565;
       gamemode = "survival";
-      motd = "arabiassa arabi \\u00A74\\u00A7karaboi";
+      motd = " # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #";
       max-players = 20;
       enable-rcon = true;
       # This password can be used to administer your minecraft server.
@@ -26,6 +26,18 @@
       # you can replace this with another password.
       "rcon.password" = "2nicegamebro1";
       level-seed = "10292992";
+    };
+  };
+  # Snapcast client listening to pc
+  systemd.user.services.snapclient-local = {
+    wantedBy = [
+      "pipewire.service"
+    ];
+    after = [
+      "pipewire.service"
+    ];
+    serviceConfig = {
+      ExecStart = "${pkgs.snapcast}/bin/snapclient -h localhost --player pulse -s 214";
     };
   };
 
