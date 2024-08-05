@@ -92,6 +92,9 @@
     qbittorrent
     discord
     croc
+
+    # MPRIS support
+    playerctl
   ];
 
   # basic configuration of git, please change to your own
@@ -141,6 +144,23 @@
     enableCompletion = true;
     shellAliases = {
       xvim = "nix run ~/coding/nixvim-config";
+    };
+  };
+  # Cooler shell history
+  programs.atuin = {
+    enable = true;
+    flags = [
+      "--disable-up-arrow"
+    ];
+    settings = {
+      auto_sync = true;
+    };
+  };
+
+  programs.starship = {
+    enable = true;
+    settings = (with builtins; fromTOML (readFile ./starship_preset.toml)) // {
+      # Overrides here
     };
   };
 
