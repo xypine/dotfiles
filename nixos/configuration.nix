@@ -264,6 +264,7 @@
     sha256 = "a0bb008e0e66addbe5f1e1162ab804fe3f9654d0622f0e40217a59efdffd8854";
   };
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
+  stylix.opacity.terminal = 0.925;
   stylix.fonts = {
     sansSerif = {
       package = pkgs.inter;
@@ -287,6 +288,7 @@
   stylix.targets.plymouth = {
     enable = false;
   };
+  stylix.targets.console.enable = false;
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
