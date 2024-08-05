@@ -142,6 +142,8 @@
     enable = true;
     autosuggestion.enable = true;
     enableCompletion = true;
+    syntaxHighlighting.enable = true;
+
     shellAliases = {
       xvim = "nix run ~/coding/nixvim-config";
     };
@@ -149,11 +151,10 @@
   # Cooler shell history
   programs.atuin = {
     enable = true;
-    flags = [
-      "--disable-up-arrow"
-    ];
     settings = {
       auto_sync = true;
+      style = "compact";
+      inline_height = 40;
     };
   };
 
