@@ -14,7 +14,6 @@ set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
 
 # Clipboard manager with image support
 set $helpers ~/.config/sway/scripts
-set $local_bin ~/.local/bin
 set $cliphist cliphist
 exec_always wl-paste --watch $cliphist store
 exec_always wl-paste --type image --watch $cliphist store

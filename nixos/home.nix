@@ -58,6 +58,7 @@
     gawk
     zstd
     gnupg
+    moreutils # Required for clipboard manager to work (contains ifne)
 
     # nix related
     #
