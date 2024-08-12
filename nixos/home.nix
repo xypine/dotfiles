@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   home.username = "elias";
@@ -86,7 +86,6 @@
     firefox
     tree
     dotter
-    neovim
     darkman
     blender-hip
     clinfo
