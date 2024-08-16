@@ -18,6 +18,11 @@
       url = "github:eerii/swayfx"; # Replace with WillPower3309/swayfx once https://github.com/WillPower3309/swayfx/pull/341 has been merged
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Firefox nightly
+    firefox = {
+      url = "github:nix-community/flake-firefox-nightly";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Personal configuration for nixvim
     nixvim = {
       url = "github:xypine/nixvim";
@@ -25,7 +30,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, stylix, nixvim, ... }: {
+  outputs = inputs@{ self, nixpkgs, home-manager, stylix, firefox, nixvim, ... }: {
     nixosConfigurations."eepc" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
 

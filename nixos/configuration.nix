@@ -136,8 +136,11 @@
     zig
     # Install swayfx from a custom repo
     inputs.swayfx.packages."${pkgs.system}".swayfx-unwrapped
+    # Nightly firefox
+    inputs.firefox.packages.${pkgs.system}.firefox-nightly-bin
     # Personal nixvim config
     inputs.nixvim.packages."${pkgs.system}".default
+    swayosd
 
     grim # screenshots
     slurp # screenshots
@@ -297,6 +300,8 @@
     enable = false;
   };
   stylix.targets.console.enable = false;
+
+  services.udev.packages = [ pkgs.swayosd ];
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you

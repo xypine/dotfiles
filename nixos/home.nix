@@ -92,6 +92,7 @@
     qbittorrent
     discord
     croc
+    imv
 
     # MPRIS support
     playerctl
@@ -102,6 +103,12 @@
     enable = true;
     userName = "Elias Eskelinen";
     userEmail = "git@eliaseskelinen.fi";
+    extraConfig = {
+      # Sign all commits using ssh key
+      commit.gpgsign = true;
+      gpg.format = "ssh";
+      user.signingkey = "~/.ssh/id_rsa.pub";
+    };
   };
 
   # alacritty - a cross-platform, GPU-accelerated terminal emulator
@@ -110,7 +117,6 @@
     # custom settings
     settings = {
       window = {
-        #opacity = 0.8;
         blur = true;
         decorations = "none";
         padding = {
@@ -135,6 +141,15 @@
         program = "zsh";
         #args = ["-l" "-c" "tmux new-session"];
       };
+    };
+  };
+  programs.kitty = {
+    enable = true;
+  };
+  programs.ranger = {
+    enable = true;
+    settings = {
+      preview_images_method = "kitty";
     };
   };
 
