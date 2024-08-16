@@ -136,6 +136,8 @@
     zig
     # Install swayfx from a custom repo
     inputs.swayfx.packages."${pkgs.system}".swayfx-unwrapped
+    # Personal nixvim config
+    inputs.nixvim.packages."${pkgs.system}".default
 
     grim # screenshots
     slurp # screenshots
@@ -215,7 +217,7 @@
   xdg.portal = { enable = true; extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; };
   xdg.portal.config.common.default = "*";
 
-  environment.variables.EDITOR = "vim";
+  environment.variables.EDITOR = "nvim";
 
   # Install steam
   programs.steam = {
@@ -263,7 +265,13 @@
     url = "https://i.redd.it/uhzbtokol3p41.jpg";
     sha256 = "a0bb008e0e66addbe5f1e1162ab804fe3f9654d0622f0e40217a59efdffd8854";
   };
+  # stylix.image = pkgs.fetchurl {
+  #   name = "metro.jpg";
+  #   url = "https://wallpapercrafter.com/desktop/17728-night-city-skyscraper-city-lights-metropolis-new-york-united-states-4k.jpg";
+  #   sha256 = "sha256-hXaV1RpytljUYh1wRMKx+wmsKruo//emGCjoNUxPWPA=";
+  # };
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
+  stylix.polarity = "dark";
   stylix.opacity.terminal = 0.925;
   stylix.fonts = {
     sansSerif = {

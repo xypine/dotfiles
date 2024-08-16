@@ -18,9 +18,14 @@
       url = "github:eerii/swayfx"; # Replace with WillPower3309/swayfx once https://github.com/WillPower3309/swayfx/pull/341 has been merged
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Personal configuration for nixvim
+    nixvim = {
+      url = "github:xypine/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, stylix, ... }: {
+  outputs = inputs@{ self, nixpkgs, home-manager, stylix, nixvim, ... }: {
     nixosConfigurations."eepc" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
 
