@@ -155,7 +155,6 @@
     settings = {
       auto_sync = true;
       style = "compact";
-      inline_height = 40;
     };
   };
 
