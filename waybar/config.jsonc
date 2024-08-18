@@ -4,7 +4,7 @@
     "height": 30,
     "margin": 4,
     "modules-left": ["idle_inhibitor", "sway/workspaces", "sway/mode", "custom/music"],
-    "modules-center": ["clock"],
+    "modules-center": ["clock", "custom/calendar"],
     "modules-right": ["cpu", "memory", "tray", "network", "pulseaudio", "battery", "power-profiles-daemon"],
     "sway/workspaces": {
         "disable-scroll": true,
@@ -82,7 +82,7 @@
         "format-wifi": "{ipaddr}  ",
         "format-ethernet": "{ipaddr}  ", // ifname
         "format-disconnected": "Disconnected ⚠ ",
-        "tooltip-format": "gateway {gwaddr}\nifname {ifname}",
+        "tooltip-format": "gateway {gwaddr}\nifname {ifname}"
     },
     "pulseaudio": {
         //"scroll-step": 1,
@@ -108,5 +108,12 @@
         "on-click": "playerctl play-pause",
         "on-scroll-up": "playerctl previous",
         "on-scroll-down": "playerctl next"
+    },
+    "custom/calendar": {
+        "return-type": "json",
+        "max-length": 60,
+        "interval": 60, // Remove this if your script is endless and write in loop
+        "exec": "$HOME/.config/waybar/calendar.sh 2> /dev/null", // Script in resources folder
+        "on-click": "firefox-nightly https://olmonoko.ruta.fi"
     }
 }

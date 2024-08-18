@@ -28,9 +28,14 @@
       url = "github:xypine/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Homegrown calendar software
+    olmonoko = {
+      url = "github:xypine/olmonoko/dev";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, stylix, firefox, nixvim, ... }: {
+  outputs = inputs@{ self, nixpkgs, home-manager, stylix, firefox, nixvim, olmonoko, ... }: {
     nixosConfigurations."eepc" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
 

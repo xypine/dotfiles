@@ -140,6 +140,8 @@
     inputs.firefox.packages.${pkgs.system}.firefox-nightly-bin
     # Personal nixvim config
     inputs.nixvim.packages."${pkgs.system}".default
+    # Homegrown calendar
+    inputs.olmonoko.packages."${pkgs.system}".olmonokod
     swayosd
 
     grim # screenshots
