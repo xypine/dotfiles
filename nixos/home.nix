@@ -83,7 +83,6 @@
     usbutils # lsusb
 
     # misc
-    firefox
     tree
     dotter
     darkman
