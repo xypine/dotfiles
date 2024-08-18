@@ -137,7 +137,7 @@
         blinking = "Off";
       };
       shell = {
-        program = "zsh";
+        program = "fish";
         #args = ["-l" "-c" "tmux new-session"];
       };
     };
@@ -152,12 +152,12 @@
     };
   };
 
-  programs.zsh = {
+  programs.fish = {
     enable = true;
-    autosuggestion.enable = true;
-    enableCompletion = true;
-    syntaxHighlighting.enable = true;
-
+    functions = {
+      # Disable default greeting
+      fish_greeting = "";
+    };
     shellAliases = {
       xvim = "nix run ~/coding/nixvim-config";
     };

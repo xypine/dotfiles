@@ -110,7 +110,7 @@
       telegram-desktop
     ];
   };
-  users.defaultUserShell = pkgs.zsh;
+  users.defaultUserShell = pkgs.fish;
   # native wayland for chromium & co
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
@@ -136,8 +136,6 @@
     zig
     # Install swayfx from a custom repo
     inputs.swayfx.packages."${pkgs.system}".swayfx-unwrapped
-    # Nightly firefox
-    inputs.firefox.packages.${pkgs.system}.firefox-nightly-bin
     # Personal nixvim config
     inputs.nixvim.packages."${pkgs.system}".default
     # Homegrown calendar
@@ -158,6 +156,7 @@
     swaybg
     lxqt.lxqt-policykit
     foot
+    xdg-utils
 
     brightnessctl
 
@@ -177,6 +176,11 @@
       rofimoji = prev.rofimoji.override { rofi = prev.rofi-wayland; };
     })
   ];
+  programs.firefox = {
+    enable = true;
+    # Nightly firefox
+    package = inputs.firefox.packages.${pkgs.system}.firefox-nightly-bin;
+  };
 
   services.snapserver = {
     enable = true;
@@ -207,22 +211,33 @@
     '';
   };
 
+  # Enable the fish shell
+  programs.fish.enable = true;
   # Enable zsh
-  programs.zsh.enable = true;
-  # Replaced by starship in home.nix
-  # programs.zsh.ohMyZsh = {
-  #   enable = true;
-  #   plugins = [ "git" "sudo" "docker" "kubectl" "rust" "golang" "fd" ];
-  #   theme = "tjkirch";
-  # };
+  # programs.zsh.enable = true;
+  # # Replaced by starship in home.nix
+  # # programs.zsh.ohMyZsh = {
+  # #   enable = true;
+  # #   plugins = [ "git" "sudo" "docker" "kubectl" "rust" "golang" "fd" ];
+  # #   theme = "tjkirch";
+  # # };
 
   # Required for swaylock to accept the correct password
   security.pam.services.swaylock = { };
 
-  xdg.portal = { enable = true; extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; };
+  xdg.portal = { enable = true; extraPortals = [ pkgs.xdg-desktop-portal-wlr pkgs.xdg-desktop-portal-gtk ]; };
   xdg.portal.config.common.default = "*";
 
   environment.variables.EDITOR = "nvim";
+
+  xdg.mime.defaultApplications = {
+    "application/pdf" = "firefox-nightly.desktop";
+    "text/html" = "firefox-nightly.desktop";
+    "x-scheme-handler/http" = "firefox-nightly.desktop";
+    "x-scheme-handler/https" = "firefox-nightly.desktop";
+    "x-scheme-handler/about" = "firefox-nightly.desktop";
+    "x-scheme-handler/unknown" = "firefox-nightly.desktop";
+  };
 
   # Install steam
   programs.steam = {
@@ -304,6 +319,11 @@
   stylix.targets.console.enable = false;
 
   services.udev.packages = [ pkgs.swayosd ];
+
+  environment.sessionVariables = {
+    # only needed for Sway
+    XDG_CURRENT_DESKTOP = "sway";
+  };
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
