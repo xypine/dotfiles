@@ -165,6 +165,9 @@
   # Cooler shell history
   programs.atuin = {
     enable = true;
+    flags = [
+      "--disable-up-arrow" # Clashes with fish autosuggestions
+    ];
     settings = {
       auto_sync = true;
       style = "compact";
