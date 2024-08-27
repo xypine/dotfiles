@@ -59,6 +59,38 @@
       ];
     };
   };
+  # Syncthing
+  systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true";
+  services.syncthing = {
+    enable = true;
+    user = "elias";
+    dataDir = "/home/elias/";
+    configDir = "/home/elias/.config/syncthing";
+    key = "/home/elias/.keys/eepc/key.pem";
+    cert = "/home/elias/.keys/eepc/cert.pem";
+    overrideDevices = true; # overrides any devices added or deleted through the WebUI
+    overrideFolders = true; # overrides any folders added or deleted through the WebUI
+    guiAddress = "0.0.0.0:8384";
+    settings = {
+      options = {
+        gui = { user = "elias"; };
+      };
+      devices = {
+        "yoga" = { id = "2X2MYK6-NIVMB4E-ISRV53P-C2XCKIJ-UZBP6JG-C7GCU3P-4MLKTKP-W3V7TQO"; };
+        # "device1" = { id = "DEVICE-ID-GOES-HERE"; };
+        # "device2" = { id = "DEVICE-ID-GOES-HERE"; };
+      };
+      folders = {
+        "Sync" = {
+          # Name of folder in Syncthing, also the folder ID
+          path = "/home/elias/Sync"; # Which folder to add to Syncthing
+          devices = [ "yoga" ];
+          id = "fi.ruta.default-11";
+        };
+      };
+    };
+  };
+
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
