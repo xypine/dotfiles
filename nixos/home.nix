@@ -92,6 +92,7 @@
     discord
     croc
     imv
+    obsidian
 
     # MPRIS support
     playerctl
