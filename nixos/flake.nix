@@ -15,7 +15,7 @@
     stylix.url = "github:danth/stylix";
     # Patched version of sway with more eye candy
     swayfx = {
-      url = "github:eerii/swayfx"; # Replace with WillPower3309/swayfx once https://github.com/WillPower3309/swayfx/pull/341 has been merged
+      url = "github:WillPower3309/swayfx";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # Firefox nightly
