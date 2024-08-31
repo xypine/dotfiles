@@ -59,6 +59,7 @@
     zstd
     gnupg
     moreutils # Required for clipboard manager to work (contains ifne)
+    libqalculate # Fancy calculator
 
     # nix related
     #
