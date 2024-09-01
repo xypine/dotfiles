@@ -176,12 +176,16 @@
     };
   };
 
+  # Nice, performant shell prompt
   programs.starship = {
     enable = true;
     settings = (with builtins; fromTOML (readFile ./starship_preset.toml)) // {
       # Overrides here
     };
   };
+
+  # Stylix hyprland integration is enabled by default and breaks things
+  stylix.targets.hyprland.enable = false;
 
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage

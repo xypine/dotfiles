@@ -12,7 +12,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    stylix.url = "github:danth/stylix";
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
     # Patched version of sway with more eye candy
     swayfx = {
       url = "github:WillPower3309/swayfx";
@@ -33,9 +37,14 @@
       url = "github:xypine/olmonoko/dev";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Rust rewrite of git-hours
+    git-hou = {
+      url = "github:xypine/git-hou";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, stylix, firefox, nixvim, olmonoko, ... }: {
+  outputs = inputs@{ self, nixpkgs, home-manager, stylix, firefox, nixvim, olmonoko, git-hou, ... }: {
     nixosConfigurations."eepc" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
 

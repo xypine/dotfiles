@@ -98,7 +98,7 @@
 
   users.users.elias = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "docker" "video" ]; # wheel = Enable ‘sudo’ for the user
+    extraGroups = [ "wheel" "networkmanager" "docker" "video" "i2c" ]; # wheel = Enable ‘sudo’ for the user
     packages = with pkgs; [
       (chromium.override {
         commandLineArgs = [
@@ -140,6 +140,8 @@
     inputs.nixvim.packages."${pkgs.system}".default
     # Homegrown calendar
     inputs.olmonoko.packages."${pkgs.system}".olmonokod
+    # rewrite of git-hours
+    inputs.git-hou.packages."${pkgs.system}".git-hou
     swayosd
 
     grim # screenshots
@@ -274,6 +276,7 @@
 
   # Docker
   virtualisation.docker.enable = true;
+  virtualisation.docker.liveRestore = false; # Slows down shutdown
 
   # Enable polkit
   security.polkit.enable = true;
