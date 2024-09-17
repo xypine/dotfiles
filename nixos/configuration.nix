@@ -98,7 +98,7 @@
 
   users.users.elias = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "docker" "video" "i2c" ]; # wheel = Enable ‘sudo’ for the user
+    extraGroups = [ "wheel" "networkmanager" "docker" "video" "i2c" "disk" ]; # wheel = Enable ‘sudo’ for the user
     packages = with pkgs; [
       (chromium.override {
         commandLineArgs = [
@@ -255,8 +255,9 @@
   };
 
   # Fonts
+  fonts.enableDefaultPackages = true;
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "IBMPlexMono" "FiraCode" ]; })
+    lmodern (nerdfonts.override { fonts = [ "IBMPlexMono" "FiraCode" ]; })
   ];
 
   # List services that you want to enable:
@@ -267,9 +268,11 @@
   # secrets vault
   services.gnome.gnome-keyring.enable = true;
 
+  services.resolved.enable = true;
+
   # Mesh VPN
   services.tailscale.enable = true;
-  services.tailscale.useRoutingFeatures = "client";
+  services.tailscale.useRoutingFeatures = "none";
 
   # Flatpak
   services.flatpak.enable = true;
