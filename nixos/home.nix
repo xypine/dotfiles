@@ -94,9 +94,15 @@
     croc
     imv
     obsidian
+    gimp
+    inkscape
+    vesktop # discord with fixes
+    tidal-hifi # tidal desktop client
 
     # MPRIS support
     playerctl
+    # EQ
+    easyeffects
   ];
 
   # basic configuration of git, please change to your own
