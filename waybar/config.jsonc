@@ -2,7 +2,7 @@
     "layer": "top",
     "position": "top",
     "height": 30,
-    "margin": 4,
+    "margin": 0,
     "modules-left": ["idle_inhibitor", "sway/workspaces", "sway/mode", "custom/music"],
     "modules-center": ["clock", "custom/calendar"],
     "modules-right": ["cpu", "memory", "tray", "network", "pulseaudio", "battery", "power-profiles-daemon"],

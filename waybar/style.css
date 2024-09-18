@@ -13,10 +13,10 @@
 
 window#waybar {
   border-style: inset;
-  border: 2px solid rgba(104, 157, 106, 0.333);
+  border-bottom: 2px solid rgba(104, 157, 106, 0.1);
   background: rgba(29, 32, 33, 0.2);
   color: #ebdbb2;
-  border-radius: 16px;
+  /*border-radius: 16px;*/
 }
 
 tooltip {
@@ -78,10 +78,10 @@ tooltip * {
 #idle_inhibitor {
   color: #ebdbb2;
   padding: 0 10px;
-  min-width: 2em;
-  margin: 0px;
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
+  min-width: 2.3em;
+  margin: 0;
+  /*border-top-left-radius: 8px;*/
+  /*border-bottom-left-radius: 8px;*/
 }
 
 #idle_inhibitor.activated {
