@@ -172,6 +172,7 @@
     docker-compose
 
     networkmanagerapplet
+    adwaita-icon-theme # Needed for some gtk apps
   ];
   nixpkgs.overlays = [
     (final: prev: {
