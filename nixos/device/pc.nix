@@ -34,7 +34,7 @@
       gamemode = "survival";
       motd = " # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #";
       max-players = 20;
-      enable-rcon = true;
+      enable-rcon = false;
       # This password can be used to administer your minecraft server.
       # Exact details as to how will be explained later. If you want
       # you can replace this with another password.
@@ -90,7 +90,9 @@
         gui = { user = "elias"; };
       };
       devices = {
+        "snote" = { id = "QAWFVL3-FPKO7II-HBBAUEZ-SFTRJXW-ONUGZOB-XD37KL3-AA6UEXT-CO2KUQJ"; autoAcceptFolders = true; };
         "yoga" = { id = "2X2MYK6-NIVMB4E-ISRV53P-C2XCKIJ-UZBP6JG-C7GCU3P-4MLKTKP-W3V7TQO"; autoAcceptFolders = true; };
+        "op9" = { id = "QHBG3X6-IINRX47-T2XSLHC-G5HZRZV-ZSQQSOS-KQOWOQP-PLJLTAQ-HEBS2QO"; autoAcceptFolders = true; };
         # "device1" = { id = "DEVICE-ID-GOES-HERE"; };
         # "device2" = { id = "DEVICE-ID-GOES-HERE"; };
       };
@@ -98,8 +100,23 @@
         "Sync" = {
           # Name of folder in Syncthing, also the folder ID
           path = "/home/elias/Sync"; # Which folder to add to Syncthing
-          devices = [ "yoga" ];
+          devices = [ "yoga" "op9" ];
           id = "fi.ruta.default-11";
+        };
+        "SNOTE Document" = {
+          path = "/home/elias/SNOTE/Document";
+          devices = [ "snote" "op9" "yoga" ];
+          id = "f1pck-thru9";
+        };
+        "SNOTE Export" = {
+          path = "/home/elias/SNOTE/Export";
+          devices = [ "snote" "op9" "yoga" ];
+          id = "eeyb3-mgteg";
+        };
+        "SNOTE Note" = {
+          path = "/home/elias/SNOTE/Note";
+          devices = [ "snote" "op9" "yoga" ];
+          id = "xl1sw-jjhif";
         };
       };
     };
