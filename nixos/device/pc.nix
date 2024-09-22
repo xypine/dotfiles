@@ -76,7 +76,7 @@
         gui = { user = "elias"; };
       };
       devices = {
-        "yoga" = { id = "2X2MYK6-NIVMB4E-ISRV53P-C2XCKIJ-UZBP6JG-C7GCU3P-4MLKTKP-W3V7TQO"; };
+        "yoga" = { id = "2X2MYK6-NIVMB4E-ISRV53P-C2XCKIJ-UZBP6JG-C7GCU3P-4MLKTKP-W3V7TQO"; autoAcceptFolders = true; };
         # "device1" = { id = "DEVICE-ID-GOES-HERE"; };
         # "device2" = { id = "DEVICE-ID-GOES-HERE"; };
       };

@@ -51,7 +51,7 @@
         gui = { user = "elias"; };
       };
       devices = {
-        "eepc" = { id = "EVNII26-II6BDA5-3ROTCHC-YGTAYKC-JA4P6PM-EOQ24AL-4FGOSRV-BBABNAQ"; };
+        "eepc" = { id = "EVNII26-II6BDA5-3ROTCHC-YGTAYKC-JA4P6PM-EOQ24AL-4FGOSRV-BBABNAQ"; autoAcceptFolders = true; };
         # "device1" = { id = "DEVICE-ID-GOES-HERE"; };
         # "device2" = { id = "DEVICE-ID-GOES-HERE"; };
       };
