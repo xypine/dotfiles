@@ -2,12 +2,26 @@
 
 {
   networking.hostName = "eepc";
+
+  # Enable networking
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+
   # Media server
   services.jellyfin.enable = true;
+
+  # For steam 
+  hardware.graphics.enable32Bit = true;
+  hardware.pulseaudio.support32Bit = true;
+
+  # Backlight control for external displays
+  hardware.i2c.enable = true;
+  boot.extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
+  boot.kernelModules = [ "i2c-dev" "ddcci_backlight" ];
+
   # Factorio server
-  services.factorio = {
-    enable = true;
-  };
+  # services.factorio = {
+  #   enable = true;
+  # };
   # Minecraft
   services.minecraft-server = {
     enable = true;
