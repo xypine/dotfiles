@@ -2,8 +2,9 @@
 
 format = """
 [](color_orange)\
-$os\
 $username\
+$hostname\
+[ ](bg:color_orange)\
 [](bg:color_yellow fg:color_orange)\
 $directory\
 [](fg:color_yellow bg:color_aqua)\
@@ -67,11 +68,17 @@ Debian = "󰣚"
 Redhat = "󱄛"
 RedHatEnterprise = "󱄛"
 
+[hostname]
+ssh_only = true
+style = "bg:color_orange fg:color_fg0"
+format = "[ @ $hostname$ssh_symbol]($style)"
+ssh_symbol = " 🌐"
+
 [username]
 show_always = true
 style_user = "bg:color_orange fg:color_fg0"
 style_root = "bg:color_orange fg:color_fg0"
-format = '[ $user ]($style)'
+format = '[ $user]($style)'
 
 [directory]
 style = "fg:color_fg0 bg:color_yellow"
