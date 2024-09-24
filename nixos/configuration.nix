@@ -156,6 +156,7 @@
     rofimoji
     dunst
     swaybg
+    wl-kbptr
     lxqt.lxqt-policykit
     foot
     xdg-utils
