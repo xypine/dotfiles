@@ -19,6 +19,18 @@
   #     xxx
   # '';
 
+  # Tray icon for mounting usb sticks / sd cards
+  services.udiskie = {
+    enable = true;
+    automount = false;
+  };
+  systemd.user.targets.tray = { # see https://github.com/nix-community/home-manager/issues/2064
+		Unit = {
+			Description = "Home Manager System Tray";
+			Requires = [ "graphical-session-pre.target" ];
+		};
+	};
+
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     # here is some command line tools I use frequently
