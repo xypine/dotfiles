@@ -90,6 +90,7 @@
         gui = { user = "elias"; };
       };
       devices = {
+        "compaq" = { id = "CK6VPIN-ZC6WWSO-HQZXFKH-DRSJCSV-WC750VZ-JKRAHJE-WOO63G2-TSP4AQ7"; autoAcceptFolders = true; };
         "snote" = { id = "QAWFVL3-FPKO7II-HBBAUEZ-SFTRJXW-ONUGZOB-XD37KL3-AA6UEXT-CO2KUQJ"; autoAcceptFolders = true; };
         "yoga" = { id = "2X2MYK6-NIVMB4E-ISRV53P-C2XCKIJ-UZBP6JG-C7GCU3P-4MLKTKP-W3V7TQO"; autoAcceptFolders = true; };
         "op9" = { id = "QHBG3X6-IINRX47-T2XSLHC-G5HZRZV-ZSQQSOS-KQOWOQP-PLJLTAQ-HEBS2QO"; autoAcceptFolders = true; };
@@ -117,6 +118,11 @@
           path = "/home/elias/SNOTE/Note";
           devices = [ "snote" "op9" "yoga" ];
           id = "xl1sw-jjhif";
+        };
+        "SNOTE WP" = {
+          path = "/home/elias/SNOTE/WP";
+          devices = [ "snote" "op9" "yoga" "compaq" ];
+          id = "7b60c-guusr";
         };
       };
     };
