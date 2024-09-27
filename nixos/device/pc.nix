@@ -42,6 +42,13 @@
       level-seed = "10292992";
     };
   };
+
+  # Local LLM backend
+  services.ollama = {
+    enable = true;
+    acceleration = "rocm";
+  };
+
   # Snapcast client listening to pc
   systemd.user.services.snapclient-local = {
     wantedBy = [
