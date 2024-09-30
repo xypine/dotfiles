@@ -146,6 +146,7 @@
     # rewrite of git-hours
     inputs.git-hou.packages."${pkgs.system}".git-hou
     swayosd
+    wlsunset
 
     grim # screenshots
     slurp # screenshots
@@ -261,7 +262,7 @@
   # Fonts
   fonts.enableDefaultPackages = true;
   fonts.packages = with pkgs; [
-    lmodern (nerdfonts.override { fonts = [ "IBMPlexMono" "FiraCode" ]; })
+    cantarell-fonts lmodern (nerdfonts.override { fonts = [ "IBMPlexMono" "FiraCode" ]; })
   ];
 
   # List services that you want to enable:
