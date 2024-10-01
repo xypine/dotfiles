@@ -34,7 +34,7 @@
     };
     # Homegrown calendar software
     olmonoko = {
-      url = "github:xypine/olmonoko/dev";
+      url = "github:xypine/olmonoko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # Rust rewrite of git-hours
