@@ -150,6 +150,7 @@
 
     grim # screenshots
     slurp # screenshots
+    wf-recorder # screenrecording
     wl-clipboard
     swaylock
     swayidle
