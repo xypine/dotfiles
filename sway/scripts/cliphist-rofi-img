@@ -3,7 +3,7 @@
 tmp_dir="/tmp/cliphist"
 rm -rf "$tmp_dir"
 
-cliphist="cliphist"
+cliphist="cliphist -db-path=$HOME/.cache/cliphist/db"
 
 if [[ -n "$1" ]]; then
     $cliphist decode <<<"$1" | wl-copy
