@@ -156,7 +156,7 @@
         shape = "beam";
         blinking = "Off";
       };
-      shell = {
+      terminal.shell = {
         program = "fish";
         #args = ["-l" "-c" "tmux new-session"];
       };
