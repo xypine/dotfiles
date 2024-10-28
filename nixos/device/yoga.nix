@@ -20,6 +20,11 @@
   # Backlight control
   programs.light.enable = true;
 
+  # allow hibernation or hybrid sleep
+  services.logind.extraConfig = ''
+    SleepOperation="suspend-then-hibernate hybrid-sleep suspend hibernate"
+    HandlePowerKey="sleep"
+  '';
 
   # Snapcast client listening to pc
   systemd.user.services.snapclient-local = {

@@ -347,6 +347,13 @@
     XDG_CURRENT_DESKTOP = "sway";
   };
 
+  # Automatically remove old versions and unused packages
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
+
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
