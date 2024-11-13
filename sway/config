@@ -29,6 +29,9 @@ bindsym $mod+Alt+s exec pkill -SIGINT wf-recorder || wf-recorder -g "$(slurp)" -
 bindsym $mod+x exec pkill waybar || waybar
 
 bindsym $mod+Return exec $term
+set $wlcwd "$helpers/wlcwd"
+bindsym $mod+Shift+Return exec "$term --working-directory=$($wlcwd)"
+
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec $menu
 floating_modifier $mod normal
