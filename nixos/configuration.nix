@@ -152,6 +152,7 @@
     slurp # screenshots
     wf-recorder # screenrecording
     wl-clipboard
+    imagemagick # needed for the colorpicker
     swaylock
     swayidle
     autotiling
@@ -200,7 +201,7 @@
   };
 
   services.snapserver = {
-    enable = true;
+    enable = false;
     codec = "flac";
     streams = {
       pipewire = {
