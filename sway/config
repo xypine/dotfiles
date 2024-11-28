@@ -24,7 +24,7 @@ bindsym $mod+Shift+p exec grim -g "$(slurp -p)" -t ppm - | convert - -format '%[
 # Screenshots
 bindsym $mod+Shift+s exec grim -g "$(slurp -d)" - | wl-copy --type image/png
 # Screenrecording
-bindsym $mod+Alt+s exec pkill -SIGINT wf-recorder || wf-recorder -g "$(slurp)" -f ~/Videos/latest.mkv
+bindsym $mod+Alt+s exec pkill -SIGINT wf-recorder || wf-recorder -y -g "$(slurp)" -f ~/Videos/latest.mkv > ~/Videos/wf-recorder.log 2>&1
 # Toggle waybar
 bindsym $mod+x exec pkill waybar || waybar
 
