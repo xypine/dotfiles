@@ -111,6 +111,7 @@
     vesktop # discord with fixes
     tidal-hifi # tidal desktop client
     resources
+    slack
 
     # MPRIS support
     playerctl
