@@ -273,7 +273,7 @@
   # Fonts
   fonts.enableDefaultPackages = true;
   fonts.packages = with pkgs; [
-    cantarell-fonts lmodern (nerdfonts.override { fonts = [ "IBMPlexMono" "FiraCode" ]; })
+    cantarell-fonts lmodern nerd-fonts.blex-mono nerd-fonts.fira-mono
   ];
 
   # List services that you want to enable:
@@ -322,7 +322,7 @@
       name = "Inter";
     };
     monospace = {
-      package = pkgs.nerdfonts.override { fonts = [ "IBMPlexMono" ]; };
+      package = pkgs.nerd-fonts.blex-mono;
       name = "BlexMono Nerd Font";
     };
     emoji = {
