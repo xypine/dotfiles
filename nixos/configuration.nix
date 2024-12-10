@@ -59,7 +59,8 @@
     # keyMap = "us";
     useXkbConfig = true; # use xkb.options in tty.
   };
-
+  # Enable support for zsa keyboards, such as the voyager
+  hardware.keyboard.zsa.enable = true;
 
   # services.displayManager.sddm.enable = true;
   # services.displayManager.sddm.wayland.enable = true;
@@ -79,8 +80,9 @@
   # ];
 
   # Configure keymap in X11
-  services.xserver.xkb.layout = "eu";
-  services.xserver.xkb.options = "caps:escape";
+  services.xserver.xkb.layout = "fi";
+  #services.xserver.xkb.options = "caps:escape";
+  services.xserver.xkb.options = "";
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -188,6 +190,8 @@
 
     networkmanagerapplet
     adwaita-icon-theme # Needed for some gtk apps
+
+    keymapp
   ];
   nixpkgs.overlays = [
     (final: prev: {
