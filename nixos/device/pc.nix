@@ -13,6 +13,11 @@
   hardware.graphics.enable32Bit = true;
   hardware.pulseaudio.support32Bit = true;
 
+  # Misc packages
+  environment.systemPackages = with pkgs; [
+    bitwig-studio
+  ];
+
   # Backlight control for external displays
   hardware.i2c.enable = true;
   boot.extraModulePackages = [config.boot.kernelPackages.ddcci-driver];

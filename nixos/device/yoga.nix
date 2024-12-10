@@ -20,6 +20,11 @@
   # Backlight control
   programs.light.enable = true;
 
+  # Misc packages
+  environment.systemPackages = with pkgs; [
+    bitwig-studio
+  ];
+
   # allow hibernation or hybrid sleep
   services.logind.extraConfig = ''
     SleepOperation="suspend-then-hibernate hybrid-sleep suspend hibernate"
