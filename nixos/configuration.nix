@@ -59,8 +59,7 @@
     # keyMap = "us";
     useXkbConfig = true; # use xkb.options in tty.
   };
-  # Enable support for zsa keyboards, such as the voyager
-  hardware.keyboard.zsa.enable = true;
+
 
   # services.displayManager.sddm.enable = true;
   # services.displayManager.sddm.wayland.enable = true;
@@ -80,9 +79,10 @@
   # ];
 
   # Configure keymap in X11
-  services.xserver.xkb.layout = "fi";
-  #services.xserver.xkb.options = "caps:escape";
-  services.xserver.xkb.options = "";
+  services.xserver.xkb.layout = "eu";
+  services.xserver.xkb.options = "caps:escape";
+  # Enable support for zsa keyboards, such as the voyager
+  hardware.keyboard.zsa.enable = true;
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;

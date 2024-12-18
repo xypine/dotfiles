@@ -63,7 +63,7 @@
       "pipewire.service"
     ];
     serviceConfig = {
-      ExecStart = "${pkgs.snapcast}/bin/snapclient -h localhost --player pulse -s 214";
+      ExecStart = "${pkgs.snapcast}/bin/snapclient -h localhost --player pulse";
     };
   };
   # TUI Git server
