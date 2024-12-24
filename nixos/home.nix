@@ -24,6 +24,8 @@
     enable = true;
     automount = false;
   };
+  services.easyeffects.enable = true;
+  services.swaync.enable = true;
   systemd.user.targets.tray = { # see https://github.com/nix-community/home-manager/issues/2064
 		Unit = {
 			Description = "Home Manager System Tray";
@@ -207,6 +209,7 @@
   # Stylix hyprland integration is enabled by default and breaks things
   stylix.targets.hyprland.enable = false;
   stylix.targets.fish.enable = false;
+  stylix.targets.swaync.enable = false;
 
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage

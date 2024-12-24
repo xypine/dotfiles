@@ -29,6 +29,7 @@
   # Misc packages
   environment.systemPackages = with pkgs; [
     bitwig-studio
+    prismlauncher
   ];
 
   # allow hibernation or hybrid sleep

@@ -170,7 +170,6 @@
     waybar
     rofi-wayland
     rofimoji
-    dunst
     swaybg
     wl-kbptr
     lxqt.lxqt-policykit
