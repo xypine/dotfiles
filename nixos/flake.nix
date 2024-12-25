@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager = {
       url = "github:nix-community/home-manager";
       # The `follows` keyword in inputs is used for inheritance.
@@ -44,7 +45,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, stylix, firefox, nixvim, olmonoko, git-hou, ... }: {
+  outputs = inputs@{ self, nixpkgs, nixos-hardware, home-manager, stylix, firefox, nixvim, olmonoko, git-hou, ... }: {
     nixosConfigurations."eepc" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
 
@@ -107,6 +108,8 @@
         # so the old configuration file still takes effect
         ./configuration.nix
         ./device/framework.nix
+
+        nixos-hardware.nixosModules.framework-13-7040-amd
 
         stylix.nixosModules.stylix
 
