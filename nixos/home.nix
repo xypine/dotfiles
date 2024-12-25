@@ -74,6 +74,8 @@
     gnupg
     moreutils # Required for clipboard manager to work (contains ifne)
     libqalculate # Fancy calculator
+    direnv # Automatic per-directory environments
+    devenv # Ergonomic dev-environments
 
     # nix related
     #
