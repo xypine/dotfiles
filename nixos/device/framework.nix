@@ -3,8 +3,42 @@
 {
   networking.hostName = "framework";
 
-  # Map encrypted drive correctly
-  boot.initrd.luks.devices."luks-2112056d-9ba3-4e2f-8df3-3921cffbe90b".device = "/dev/disk/by-uuid/2112056d-9ba3-4e2f-8df3-3921cffbe90b";
+
+  boot = {
+    initrd.systemd.enable = true;
+
+    # Map encrypted drive correctly
+    initrd.luks.devices."luks-2112056d-9ba3-4e2f-8df3-3921cffbe90b".device = "/dev/disk/by-uuid/2112056d-9ba3-4e2f-8df3-3921cffbe90b";
+
+    # Fancy boot animation
+    plymouth = {
+      enable = true;
+      # theme = "rings";
+      # themePackages = with pkgs; [
+      #   # By default we would install all themes
+      #   (adi1090x-plymouth-themes.override {
+      #     selected_themes = [ "rings" ];
+      #   })
+      # ];
+    };
+
+    # Enable "Silent Boot"
+    consoleLogLevel = 0;
+    initrd.verbose = false;
+    kernelParams = [
+      "quiet"
+      "splash"
+      "boot.shell_on_fail"
+      "loglevel=3"
+      "rd.systemd.show_status=false"
+      "rd.udev.log_level=3"
+      "udev.log_priority=3"
+    ];
+    # Hide the OS choice for bootloaders.
+    # It's still possible to open the bootloader list by pressing any key
+    # It will just not appear on screen unless a key is pressed
+    loader.timeout = 0;
+  };
 
   # Enable networking
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
