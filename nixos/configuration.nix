@@ -190,8 +190,9 @@
 
     networkmanagerapplet
     adwaita-icon-theme # Needed for some gtk apps
+    gruvbox-material-gtk-theme
 
-    keymapp
+    keymapp # For configuring the ZSA Voyager
   ];
   nixpkgs.overlays = [
     (final: prev: {
