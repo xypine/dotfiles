@@ -2,7 +2,8 @@
   description = "Elias' NixOS flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # Manual version override until rocm fixes have been merged to nixos-unstable
+    nixpkgs.url = "github:NixOS/nixpkgs/7d27fd2b04ede95f27fdce6b8902745777ad4844";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager = {
       url = "github:nix-community/home-manager";

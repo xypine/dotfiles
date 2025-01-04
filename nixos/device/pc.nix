@@ -1,4 +1,9 @@
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   networking.hostName = "eepc";
@@ -9,7 +14,7 @@
   # Media server
   services.jellyfin.enable = true;
 
-  # For steam 
+  # For steam
   hardware.graphics.enable32Bit = true;
   hardware.pulseaudio.support32Bit = true;
 
@@ -20,8 +25,11 @@
 
   # Backlight control for external displays
   hardware.i2c.enable = true;
-  boot.extraModulePackages = [config.boot.kernelPackages.ddcci-driver];
-  boot.kernelModules = [ "i2c-dev" "ddcci_backlight" ];
+  boot.extraModulePackages = [ config.boot.kernelPackages.ddcci-driver ];
+  boot.kernelModules = [
+    "i2c-dev"
+    "ddcci_backlight"
+  ];
 
   # Factorio server
   # services.factorio = {
@@ -63,7 +71,7 @@
       "pipewire.service"
     ];
     serviceConfig = {
-      ExecStart = "${pkgs.snapcast}/bin/snapclient -h localhost --player pulse";
+      ExecStart = "${pkgs.snapcast}/bin/snapclient -h 127.0.0.1 --player pulse -s alsa_output.pci-0000_00_1f.3.analog-stereo";
     };
   };
   # TUI Git server
@@ -99,14 +107,31 @@
     guiAddress = "0.0.0.0:8384";
     settings = {
       options = {
-        gui = { user = "elias"; };
+        gui = {
+          user = "elias";
+        };
       };
       devices = {
-        "framework" = { id = "LZ4PBSZ-6AQOTSE-LKR4H5X-EURURFD-BGBMWXW-KJMCODJ-Y4WUZDI-YWFIOQE"; autoAcceptFolders = true; };
-        "compaq" = { id = "CK6VPIN-ZC6WWSO-HQZXFKH-DRSJCSV-WC750VZ-JKRAHJE-WOO63G2-TSP4AQ7"; autoAcceptFolders = true; };
-        "snote" = { id = "QAWFVL3-FPKO7II-HBBAUEZ-SFTRJXW-ONUGZOB-XD37KL3-AA6UEXT-CO2KUQJ"; autoAcceptFolders = true; };
-        "yoga" = { id = "2X2MYK6-NIVMB4E-ISRV53P-C2XCKIJ-UZBP6JG-C7GCU3P-4MLKTKP-W3V7TQO"; autoAcceptFolders = true; };
-        "op9" = { id = "QHBG3X6-IINRX47-T2XSLHC-G5HZRZV-ZSQQSOS-KQOWOQP-PLJLTAQ-HEBS2QO"; autoAcceptFolders = true; };
+        "framework" = {
+          id = "LZ4PBSZ-6AQOTSE-LKR4H5X-EURURFD-BGBMWXW-KJMCODJ-Y4WUZDI-YWFIOQE";
+          autoAcceptFolders = true;
+        };
+        "compaq" = {
+          id = "CK6VPIN-ZC6WWSO-HQZXFKH-DRSJCSV-WC750VZ-JKRAHJE-WOO63G2-TSP4AQ7";
+          autoAcceptFolders = true;
+        };
+        "snote" = {
+          id = "QAWFVL3-FPKO7II-HBBAUEZ-SFTRJXW-ONUGZOB-XD37KL3-AA6UEXT-CO2KUQJ";
+          autoAcceptFolders = true;
+        };
+        "yoga" = {
+          id = "2X2MYK6-NIVMB4E-ISRV53P-C2XCKIJ-UZBP6JG-C7GCU3P-4MLKTKP-W3V7TQO";
+          autoAcceptFolders = true;
+        };
+        "op9" = {
+          id = "QHBG3X6-IINRX47-T2XSLHC-G5HZRZV-ZSQQSOS-KQOWOQP-PLJLTAQ-HEBS2QO";
+          autoAcceptFolders = true;
+        };
         # "device1" = { id = "DEVICE-ID-GOES-HERE"; };
         # "device2" = { id = "DEVICE-ID-GOES-HERE"; };
       };
@@ -114,33 +139,56 @@
         "Sync" = {
           # Name of folder in Syncthing, also the folder ID
           path = "/home/elias/Sync"; # Which folder to add to Syncthing
-          devices = [ "yoga" "op9" ];
+          devices = [
+            "yoga"
+            "op9"
+          ];
           id = "fi.ruta.default-11";
         };
         "SNOTE Document" = {
           path = "/home/elias/SNOTE/Document";
-          devices = [ "snote" "op9" "yoga" "framework" ];
+          devices = [
+            "snote"
+            "op9"
+            "yoga"
+            "framework"
+          ];
           id = "f1pck-thru9";
         };
         "SNOTE Export" = {
           path = "/home/elias/SNOTE/Export";
-          devices = [ "snote" "op9" "yoga" "framework" ];
+          devices = [
+            "snote"
+            "op9"
+            "yoga"
+            "framework"
+          ];
           id = "eeyb3-mgteg";
         };
         "SNOTE Note" = {
           path = "/home/elias/SNOTE/Note";
-          devices = [ "snote" "op9" "yoga" "framework" ];
+          devices = [
+            "snote"
+            "op9"
+            "yoga"
+            "framework"
+          ];
           id = "xl1sw-jjhif";
         };
         "SNOTE WP" = {
           path = "/home/elias/SNOTE/WP";
-          devices = [ "snote" "op9" "yoga" "compaq" "framework" ];
+          devices = [
+            "snote"
+            "op9"
+            "yoga"
+            "compaq"
+            "framework"
+          ];
           id = "7b60c-guusr";
         };
       };
     };
   };
-
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
