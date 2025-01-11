@@ -8,6 +8,39 @@
 {
   networking.hostName = "eepc";
 
+  boot = {
+    initrd.systemd.enable = true;
+
+    # Fancy boot animation
+    plymouth = {
+      enable = true;
+      # theme = "rings";
+      # themePackages = with pkgs; [
+      #   # By default we would install all themes
+      #   (adi1090x-plymouth-themes.override {
+      #     selected_themes = [ "rings" ];
+      #   })
+      # ];
+    };
+
+    # Enable "Silent Boot"
+    consoleLogLevel = 0;
+    initrd.verbose = false;
+    kernelParams = [
+      "quiet"
+      "splash"
+      "boot.shell_on_fail"
+      "loglevel=3"
+      "rd.systemd.show_status=false"
+      "rd.udev.log_level=3"
+      "udev.log_priority=3"
+    ];
+    # Hide the OS choice for bootloaders.
+    # It's still possible to open the bootloader list by pressing any key
+    # It will just not appear on screen unless a key is pressed
+    loader.timeout = 0;
+  };
+
   # Enable networking
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
@@ -71,12 +104,14 @@
   # Snapcast client listening to pc
   systemd.user.services.snapclient-local = {
     wantedBy = [
-      "pipewire.service"
+      "default.target"
     ];
     after = [
       "pipewire.service"
+      "pipewire-pulse.service"
     ];
     serviceConfig = {
+      ExecStartPre = "${pkgs.coreutils}/bin/sleep 5"; # Add a 5-second delay before starting snapclient
       ExecStart = "${pkgs.snapcast}/bin/snapclient -h 127.0.0.1 --player pulse -s alsa_output.pci-0000_00_1f.3.analog-stereo";
     };
   };
