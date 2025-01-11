@@ -1,4 +1,9 @@
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   home.username = "elias";
@@ -26,12 +31,13 @@
   };
   services.easyeffects.enable = true;
   services.swaync.enable = true;
-  systemd.user.targets.tray = { # see https://github.com/nix-community/home-manager/issues/2064
-		Unit = {
-			Description = "Home Manager System Tray";
-			Requires = [ "graphical-session-pre.target" ];
-		};
-	};
+  systemd.user.targets.tray = {
+    # see https://github.com/nix-community/home-manager/issues/2064
+    Unit = {
+      Description = "Home Manager System Tray";
+      Requires = [ "graphical-session-pre.target" ];
+    };
+  };
 
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
@@ -151,7 +157,10 @@
       };
       keyboard = {
         bindings = [
-          { key = "F11"; action = "ToggleFullscreen"; }
+          {
+            key = "F11";
+            action = "ToggleFullscreen";
+          }
         ];
       };
       mouse = {
@@ -187,6 +196,11 @@
     shellAliases = {
       xvim = "nix run ~/coding/nixvim-config";
     };
+    loginShellInit = ''
+      if test (id --user $USER) -ge 1000 && test (tty) = "/dev/tty1"
+        exec sway
+      end
+    '';
   };
   # Cooler shell history
   programs.atuin = {

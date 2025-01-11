@@ -16,7 +16,7 @@
 
   # For steam
   hardware.graphics.enable32Bit = true;
-  hardware.pulseaudio.support32Bit = true;
+  services.pulseaudio.support32Bit = true;
 
   # Misc packages
   environment.systemPackages = with pkgs; [
@@ -30,6 +30,12 @@
     "i2c-dev"
     "ddcci_backlight"
   ];
+
+  # Automatic login after boot
+  services.getty = {
+    autologinUser = "elias";
+    autologinOnce = true; # Only immediately after boot
+  };
 
   # Factorio server
   # services.factorio = {
