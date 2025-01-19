@@ -39,6 +39,19 @@
     # It's still possible to open the bootloader list by pressing any key
     # It will just not appear on screen unless a key is pressed
     loader.timeout = 0;
+
+    extraModulePackages = with config.boot.kernelPackages; [
+      # Virtual camera
+      v4l2loopback
+      # Backlight control for external displays
+      ddcci-driver
+    ];
+    kernelModules = [
+      "v4l2loopback"
+      #
+      "i2c-dev"
+      "ddcci_backlight"
+    ];
   };
 
   # Enable networking
@@ -58,11 +71,6 @@
 
   # Backlight control for external displays
   hardware.i2c.enable = true;
-  boot.extraModulePackages = [ config.boot.kernelPackages.ddcci-driver ];
-  boot.kernelModules = [
-    "i2c-dev"
-    "ddcci_backlight"
-  ];
 
   # Automatic login after boot
   services.getty = {
