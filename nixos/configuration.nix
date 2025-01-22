@@ -79,28 +79,42 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
 
-  users.users.elias = {
-    isNormalUser = true;
-    extraGroups = [
-      "wheel"
-      "networkmanager"
-      "docker"
-      "video"
-      "i2c"
-      "disk"
-    ]; # wheel = Enable ‘sudo’ for the user
-    packages = with pkgs; [
-      (chromium.override {
-        commandLineArgs = [
-          "--enable-features=VaapiVideoDecodeLinuxGL"
-          "--ignore-gpu-blocklist"
-          "--enable-zero-copy"
+  users.users = {
+    elias = {
+      isNormalUser = true;
+      extraGroups = [
+        "wheel"
+        "networkmanager"
+        "docker"
+        "video"
+        "i2c"
+        "disk"
+      ]; # wheel = Enable ‘sudo’ for the user
+      packages = with pkgs; [
+        (chromium.override {
+          commandLineArgs = [
+            "--enable-features=VaapiVideoDecodeLinuxGL"
+            "--ignore-gpu-blocklist"
+            "--enable-zero-copy"
+          ];
+        })
+        telegram-desktop
+      ];
+    };
+    remoteBuilder = {
+      isNormalUser = true;
+      createHome = false;
+      group = "remotebuild";
+
+      openssh = {
+        authorizedKeys.keys = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJCJ2nux+c7309zPVktQcW0UDUqIPVsX8Tqt2dWmYyR4 nixremote.zero@eliaseskelinen.fi"
         ];
-      })
-      telegram-desktop
-    ];
+      };
+    };
   };
   users.defaultUserShell = pkgs.fish;
+  users.groups.remotebuild = { };
   # native wayland for chromium & co
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
@@ -109,6 +123,8 @@
     "nix-command"
     "flakes"
   ];
+  # Necessary permissions for remote builders
+  nix.settings.trusted-users = [ "remoteBuilder" ];
   # Allow unfree
   nixpkgs.config.allowUnfree = true;
   # List packages installed in system profile. To search, run:
@@ -370,14 +386,12 @@
   #   }
   # ];
   # devenv cachix
-  # ssh-ng://elias@eepc?ssh-key=/home/elias/.ssh/nixremote-zero
-  nix.extraOptions = ''
-    trusted-users = root elias
-    extra-substituters = https://devenv.cachix.org
-    extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw= eepc:lWdUxqxlVnZS4IdeZJHqS7uHun1SA0hrU1iB9zuOLg0=
-    secret-key-files = /home/elias/Sync/rbuilder/cache-priv-key.pem
-  '';
-  # nix.distributedBuilds = true;
+  # nix.extraOptions = ''
+  #   trusted-users = root elias
+  #   extra-substituters = https://devenv.cachix.org
+  #   extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=
+  #   secret-key-files = /home/elias/Sync/rbuilder/cache-priv-key.pem
+  # '';
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
