@@ -2,14 +2,18 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot = {
@@ -61,7 +65,6 @@
     useXkbConfig = true; # use xkb.options in tty.
   };
 
-
   # services.displayManager.sddm.enable = true;
   # services.displayManager.sddm.wayland.enable = true;
   # services.displayManager.sddm.theme = "xypine";
@@ -102,26 +105,52 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
 
-  users.users.elias = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "docker" "video" "i2c" "disk" ]; # wheel = Enable ‘sudo’ for the user
-    packages = with pkgs; [
-      (chromium.override {
-        commandLineArgs = [
-          "--enable-features=VaapiVideoDecodeLinuxGL"
-          "--ignore-gpu-blocklist"
-          "--enable-zero-copy"
+  users.users = {
+    elias = {
+      isNormalUser = true;
+      extraGroups = [
+        "wheel"
+        "networkmanager"
+        "docker"
+        "video"
+        "i2c"
+        "disk"
+      ]; # wheel = Enable ‘sudo’ for the user
+      packages = with pkgs; [
+        (chromium.override {
+          commandLineArgs = [
+            "--enable-features=VaapiVideoDecodeLinuxGL"
+            "--ignore-gpu-blocklist"
+            "--enable-zero-copy"
+          ];
+        })
+        telegram-desktop
+      ];
+    };
+    remoteBuilder = {
+      isNormalUser = true;
+      createHome = false;
+      group = "remotebuild";
+
+      openssh = {
+        authorizedKeys.keys = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJCJ2nux+c7309zPVktQcW0UDUqIPVsX8Tqt2dWmYyR4 nixremote.zero@eliaseskelinen.fi"
         ];
-      })
-      telegram-desktop
-    ];
+      };
+    };
   };
   users.defaultUserShell = pkgs.fish;
+  users.groups.remotebuild = { };
   # native wayland for chromium & co
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # Enable flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+  # Necessary permissions for remote builders
+  nix.settings.trusted-users = [ "remoteBuilder" ];
   # Allow unfree
   nixpkgs.config.allowUnfree = true;
   # List packages installed in system profile. To search, run:
@@ -248,7 +277,13 @@
   # Required for swaylock to accept the correct password
   security.pam.services.swaylock = { };
 
-  xdg.portal = { enable = true; extraPortals = [ pkgs.xdg-desktop-portal-wlr pkgs.xdg-desktop-portal-gtk ]; };
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-wlr
+      pkgs.xdg-desktop-portal-gtk
+    ];
+  };
   xdg.portal.config.common.default = "*";
 
   environment.variables.EDITOR = "nvim";
@@ -278,7 +313,10 @@
   # Fonts
   fonts.enableDefaultPackages = true;
   fonts.packages = with pkgs; [
-    cantarell-fonts lmodern nerd-fonts.blex-mono nerd-fonts.fira-mono
+    cantarell-fonts
+    lmodern
+    nerd-fonts.blex-mono
+    nerd-fonts.fira-mono
   ];
 
   # List services that you want to enable:
@@ -305,7 +343,6 @@
   # Enable polkit
   security.polkit.enable = true;
   services.udisks2.enable = true;
-
 
   stylix.enable = true;
   stylix.image = pkgs.fetchurl {
@@ -360,11 +397,12 @@
     options = "--delete-older-than 30d";
   };
   # devenv cachix
-  nix.extraOptions = ''
-      trusted-users = root elias
-      extra-substituters = https://devenv.cachix.org
-      extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=
-  '';
+  # nix.extraOptions = ''
+  #   trusted-users = root elias
+  #   extra-substituters = https://devenv.cachix.org
+  #   extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=
+  #   secret-key-files = /home/elias/Sync/rbuilder/cache-priv-key.pem
+  # '';
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
@@ -391,4 +429,3 @@
   system.stateVersion = "24.05"; # Did you read the comment?
 
 }
-

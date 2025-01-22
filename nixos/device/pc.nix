@@ -134,6 +134,9 @@
       ];
     };
   };
+  services.rkvm = {
+    enable = true;
+  };
   # Syncthing
   systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true";
   services.syncthing = {
