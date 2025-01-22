@@ -28,9 +28,14 @@ bindsym $mod+Alt+s exec pkill -SIGINT wf-recorder || wf-recorder -y -g "$(slurp)
 # Toggle waybar
 bindsym $mod+x exec pkill waybar || waybar
 
-bindsym $mod+Return exec $term
 set $wlcwd "$helpers/wlcwd"
+
+# Terminal
+bindsym $mod+Return exec $term
+# Terminal in the working directory of the focused program
 bindsym $mod+Shift+Return exec "$term --working-directory=$($wlcwd)"
+# Terminal based file browser
+bindsym $mod+b exec "kitty --working-directory=$($wlcwd) -e yazi"
 
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec $menu
@@ -71,7 +76,7 @@ bindsym $mod+Shift+8 move container to workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9
 bindsym $mod+Shift+0 move container to workspace number 10
 
-bindsym $mod+b splith
+bindsym $mod+c splith
 bindsym $mod+v splitv
 
 bindsym $mod+s layout stacking

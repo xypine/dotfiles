@@ -45,7 +45,8 @@
     # feel free to add your own or remove some of them
 
     fastfetch
-    ranger # terminal file manager
+    chafa
+    ueberzugpp
 
     # archives
     zip
@@ -114,7 +115,6 @@
     qbittorrent
     discord
     croc
-    imv
     obsidian
     gimp
     inkscape
@@ -180,10 +180,24 @@
   programs.kitty = {
     enable = true;
   };
-  programs.ranger = {
+
+  programs.imv.enable = true;
+  # terminal file manager
+  programs.yazi = {
     enable = true;
     settings = {
-      preview_images_method = "kitty";
+      manager = {
+        sort_by = "natural";
+        sort_sensitive = true;
+        sort_reverse = false;
+        sort_dir_first = true;
+        linemode = "none";
+        show_hidden = true;
+        show_symlink = true;
+      };
+      preview = {
+
+      };
     };
   };
 
