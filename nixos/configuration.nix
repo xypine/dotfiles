@@ -2,47 +2,25 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
-  boot = {
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
 
-    # plymouth = {
-    #   enable = true;
-    #   # theme = "red_loader";
-    #   # themePackages = with pkgs; [
-    #   #   # By default we would install all themes
-    #   #   (adi1090x-plymouth-themes.override {
-    #   #     selected_themes = [ "red_loader" ];
-    #   #   })
-    #   # ];
-    # };
-
-    # # Enable "Silent Boot"
-    # consoleLogLevel = 0;
-    # initrd.verbose = false;
-    # kernelParams = [
-    #   "quiet"
-    #   "splash"
-    #   "boot.shell_on_fail"
-    #   "loglevel=3"
-    #   "rd.systemd.show_status=false"
-    #   "rd.udev.log_level=3"
-    #   "udev.log_priority=3"
-    # ];
-    # # Hide the OS choice for bootloaders.
-    # # It's still possible to open the bootloader list by pressing any key
-    # # It will just not appear on screen unless a key is pressed
-    # loader.timeout = 0;
+    systemd-boot.configurationLimit = 12;
   };
 
   # Set your time zone.
@@ -60,7 +38,6 @@
     # keyMap = "us";
     useXkbConfig = true; # use xkb.options in tty.
   };
-
 
   # services.displayManager.sddm.enable = true;
   # services.displayManager.sddm.wayland.enable = true;
@@ -104,7 +81,14 @@
 
   users.users.elias = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "docker" "video" "i2c" "disk" ]; # wheel = Enable ‘sudo’ for the user
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "docker"
+      "video"
+      "i2c"
+      "disk"
+    ]; # wheel = Enable ‘sudo’ for the user
     packages = with pkgs; [
       (chromium.override {
         commandLineArgs = [
@@ -121,7 +105,10 @@
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # Enable flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   # Allow unfree
   nixpkgs.config.allowUnfree = true;
   # List packages installed in system profile. To search, run:
@@ -248,7 +235,13 @@
   # Required for swaylock to accept the correct password
   security.pam.services.swaylock = { };
 
-  xdg.portal = { enable = true; extraPortals = [ pkgs.xdg-desktop-portal-wlr pkgs.xdg-desktop-portal-gtk ]; };
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-wlr
+      pkgs.xdg-desktop-portal-gtk
+    ];
+  };
   xdg.portal.config.common.default = "*";
 
   environment.variables.EDITOR = "nvim";
@@ -278,7 +271,10 @@
   # Fonts
   fonts.enableDefaultPackages = true;
   fonts.packages = with pkgs; [
-    cantarell-fonts lmodern nerd-fonts.blex-mono nerd-fonts.fira-mono
+    cantarell-fonts
+    lmodern
+    nerd-fonts.blex-mono
+    nerd-fonts.fira-mono
   ];
 
   # List services that you want to enable:
@@ -305,7 +301,6 @@
   # Enable polkit
   security.polkit.enable = true;
   services.udisks2.enable = true;
-
 
   stylix.enable = true;
   stylix.image = pkgs.fetchurl {
@@ -359,12 +354,30 @@
     dates = "weekly";
     options = "--delete-older-than 30d";
   };
+  # nix.buildMachines = [
+  #   {
+  #     hostName = "eepc";
+  #     system = "x86_64-linux";
+  #     protocol = "ssh-ng";
+  #     maxJobs = 3;
+  #     speedFactor = 2;
+  #     supportedFeatures = [
+  #       "nixos-test"
+  #       "benchmark"
+  #       "big-parallel"
+  #       "kvm"
+  #     ];
+  #   }
+  # ];
   # devenv cachix
+  # ssh-ng://elias@eepc?ssh-key=/home/elias/.ssh/nixremote-zero
   nix.extraOptions = ''
-      trusted-users = root elias
-      extra-substituters = https://devenv.cachix.org
-      extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=
+    trusted-users = root elias
+    extra-substituters = https://devenv.cachix.org
+    extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw= eepc:lWdUxqxlVnZS4IdeZJHqS7uHun1SA0hrU1iB9zuOLg0=
+    secret-key-files = /home/elias/Sync/rbuilder/cache-priv-key.pem
   '';
+  # nix.distributedBuilds = true;
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
@@ -391,4 +404,3 @@
   system.stateVersion = "24.05"; # Did you read the comment?
 
 }
-

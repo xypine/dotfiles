@@ -49,6 +49,9 @@
     kernelModules = [
       "v4l2loopback"
     ];
+    extraModprobeConfig = ''
+      options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
+    '';
   };
 
   # Automatic login after boot
@@ -56,6 +59,9 @@
     autologinUser = "elias";
     autologinOnce = true; # Only immediately after boot
   };
+
+  # services.displayManager.cosmic-greeter.enable = true;
+  # services.desktopManager.cosmic.enable = true;
 
   # Enable networking
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
@@ -190,6 +196,23 @@
       };
     };
   };
+
+  nix.distributedBuilds = true;
+  nix.settings.builders-use-substitutes = true;
+
+  nix.buildMachines = [
+    {
+      hostName = "eepc";
+      sshUser = "remoteBuilder";
+      sshKey = "/home/elias/.ssh/nixremote-zero";
+      system = pkgs.stdenv.hostPlatform.system;
+      supportedFeatures = [
+        "nixos-test"
+        "big-parallel"
+        "kvm"
+      ];
+    }
+  ];
 
   # Open ports in the firewall.
   # 5900: VNC

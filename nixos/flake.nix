@@ -44,135 +44,152 @@
       url = "github:xypine/git-hou";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-  };
 
-  outputs = inputs@{ self, nixpkgs, nixos-hardware, home-manager, stylix, firefox, nixvim, olmonoko, git-hou, ... }: {
-    nixosConfigurations."eepc" = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-
-      # Set all inputs parameters as special arguments for all submodules,
-      # so you can directly use all dependencies in inputs in submodules
-      specialArgs = { inherit inputs; };
-
-      modules = [
-        # Import the previous configuration.nix we used,
-        # so the old configuration file still takes effect
-        ./configuration.nix
-        ./device/pc.nix
-
-        stylix.nixosModules.stylix
-
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.backupFileExtension = "backup";
-
-          home-manager.users.elias = import ./home.nix;
-        }
-      ];
-    };
-    nixosConfigurations."yoga-slim-7-pro" = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-
-      # Set all inputs parameters as special arguments for all submodules,
-      # so you can directly use all dependencies in inputs in submodules
-      specialArgs = { inherit inputs; };
-
-      modules = [
-        # Import the previous configuration.nix we used,
-        # so the old configuration file still takes effect
-        ./configuration.nix
-        ./device/yoga.nix
-
-        stylix.nixosModules.stylix
-
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.backupFileExtension = "backup";
-
-          home-manager.users.elias = import ./home.nix;
-        }
-      ];
-    };
-    nixosConfigurations."framework" = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-
-      # Set all inputs parameters as special arguments for all submodules,
-      # so you can directly use all dependencies in inputs in submodules
-      specialArgs = { inherit inputs; };
-
-      modules = [
-        # Import the previous configuration.nix we used,
-        # so the old configuration file still takes effect
-        ./configuration.nix
-        ./device/framework.nix
-
-        nixos-hardware.nixosModules.framework-13-7040-amd
-
-        stylix.nixosModules.stylix
-
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.backupFileExtension = "backup";
-
-          home-manager.users.elias = import ./home.nix;
-        }
-      ];
-    };
-    nixosConfigurations."school-laptop" = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-
-      # Set all inputs parameters as special arguments for all submodules,
-      # so you can directly use all dependencies in inputs in submodules
-      specialArgs = { inherit inputs; };
-
-      modules = [
-        # Import the previous configuration.nix we used,
-        # so the old configuration file still takes effect
-        ./configuration.nix
-        ./device/school.nix
-
-        stylix.nixosModules.stylix
-
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.backupFileExtension = "backup";
-
-          home-manager.users.elias = import ./home.nix;
-        }
-      ];
-    };
-    nixosConfigurations."compaq" = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-
-      # Set all inputs parameters as special arguments for all submodules,
-      # so you can directly use all dependencies in inputs in submodules
-      specialArgs = { inherit inputs; };
-
-      modules = [
-        # Import the previous configuration.nix we used,
-        # so the old configuration file still takes effect
-        ./configuration.nix
-        ./device/compaq.nix
-
-        stylix.nixosModules.stylix
-
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.backupFileExtension = "backup";
-
-          home-manager.users.elias = import ./home.nix;
-        }
-      ];
+    # The COSMIC Desktop environment
+    nixos-cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
+
+  outputs =
+    inputs@{
+      nixpkgs,
+      nixos-hardware,
+      home-manager,
+      stylix,
+      nixos-cosmic,
+      ...
+    }:
+    {
+      nixosConfigurations."eepc" = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+
+        # Set all inputs parameters as special arguments for all submodules,
+        # so you can directly use all dependencies in inputs in submodules
+        specialArgs = { inherit inputs; };
+
+        modules = [
+          # Import the previous configuration.nix we used,
+          # so the old configuration file still takes effect
+          ./configuration.nix
+          ./device/pc.nix
+
+          stylix.nixosModules.stylix
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "backup";
+
+            home-manager.users.elias = import ./home.nix;
+          }
+        ];
+      };
+      nixosConfigurations."yoga-slim-7-pro" = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+
+        # Set all inputs parameters as special arguments for all submodules,
+        # so you can directly use all dependencies in inputs in submodules
+        specialArgs = { inherit inputs; };
+
+        modules = [
+          # Import the previous configuration.nix we used,
+          # so the old configuration file still takes effect
+          ./configuration.nix
+          ./device/yoga.nix
+
+          stylix.nixosModules.stylix
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "backup";
+
+            home-manager.users.elias = import ./home.nix;
+          }
+        ];
+      };
+      nixosConfigurations."framework" = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+
+        # Set all inputs parameters as special arguments for all submodules,
+        # so you can directly use all dependencies in inputs in submodules
+        specialArgs = { inherit inputs; };
+
+        modules = [
+          nixos-cosmic.nixosModules.default
+
+          # Import the previous configuration.nix we used,
+          # so the old configuration file still takes effect
+          ./configuration.nix
+          ./device/framework.nix
+
+          nixos-hardware.nixosModules.framework-13-7040-amd
+
+          stylix.nixosModules.stylix
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "backup";
+
+            home-manager.users.elias = import ./home.nix;
+          }
+        ];
+      };
+      nixosConfigurations."school-laptop" = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+
+        # Set all inputs parameters as special arguments for all submodules,
+        # so you can directly use all dependencies in inputs in submodules
+        specialArgs = { inherit inputs; };
+
+        modules = [
+          # Import the previous configuration.nix we used,
+          # so the old configuration file still takes effect
+          ./configuration.nix
+          ./device/school.nix
+
+          stylix.nixosModules.stylix
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "backup";
+
+            home-manager.users.elias = import ./home.nix;
+          }
+        ];
+      };
+      nixosConfigurations."compaq" = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+
+        # Set all inputs parameters as special arguments for all submodules,
+        # so you can directly use all dependencies in inputs in submodules
+        specialArgs = { inherit inputs; };
+
+        modules = [
+          # Import the previous configuration.nix we used,
+          # so the old configuration file still takes effect
+          ./configuration.nix
+          ./device/compaq.nix
+
+          stylix.nixosModules.stylix
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "backup";
+
+            home-manager.users.elias = import ./home.nix;
+          }
+        ];
+      };
+    };
 }
