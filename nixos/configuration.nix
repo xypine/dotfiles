@@ -288,6 +288,7 @@
   fonts.enableDefaultPackages = true;
   fonts.packages = with pkgs; [
     cantarell-fonts
+    montserrat
     lmodern
     nerd-fonts.blex-mono
     nerd-fonts.fira-mono
