@@ -124,7 +124,10 @@
     "flakes"
   ];
   # Necessary permissions for remote builders
-  nix.settings.trusted-users = [ "remoteBuilder" ];
+  nix.settings.trusted-users = [
+    "remoteBuilder"
+    "elias"
+  ];
   # Allow unfree
   nixpkgs.config.allowUnfree = true;
   # List packages installed in system profile. To search, run:

@@ -108,6 +108,19 @@
     };
   };
 
+  # Snapcast client listening to kodi
+  systemd.user.services.snapclient-kodi = {
+    wantedBy = [
+      "pipewire.service"
+    ];
+    after = [
+      "pipewire.service"
+    ];
+    serviceConfig = {
+      ExecStart = "${pkgs.snapcast}/bin/snapclient -h 192.168.1.55";
+    };
+  };
+
   # Syncthing
   systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true";
   services.syncthing = {
@@ -206,6 +219,7 @@
       sshUser = "remoteBuilder";
       sshKey = "/home/elias/.ssh/nixremote-zero";
       system = pkgs.stdenv.hostPlatform.system;
+      protocol = "ssh-ng";
       supportedFeatures = [
         "nixos-test"
         "big-parallel"
