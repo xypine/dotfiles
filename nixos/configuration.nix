@@ -16,37 +16,11 @@
   ];
 
   # Use the systemd-boot EFI boot loader.
-  boot = {
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
 
-    # plymouth = {
-    #   enable = true;
-    #   # theme = "red_loader";
-    #   # themePackages = with pkgs; [
-    #   #   # By default we would install all themes
-    #   #   (adi1090x-plymouth-themes.override {
-    #   #     selected_themes = [ "red_loader" ];
-    #   #   })
-    #   # ];
-    # };
-
-    # # Enable "Silent Boot"
-    # consoleLogLevel = 0;
-    # initrd.verbose = false;
-    # kernelParams = [
-    #   "quiet"
-    #   "splash"
-    #   "boot.shell_on_fail"
-    #   "loglevel=3"
-    #   "rd.systemd.show_status=false"
-    #   "rd.udev.log_level=3"
-    #   "udev.log_priority=3"
-    # ];
-    # # Hide the OS choice for bootloaders.
-    # # It's still possible to open the bootloader list by pressing any key
-    # # It will just not appear on screen unless a key is pressed
-    # loader.timeout = 0;
+    systemd-boot.configurationLimit = 12;
   };
 
   # Set your time zone.
@@ -150,7 +124,10 @@
     "flakes"
   ];
   # Necessary permissions for remote builders
-  nix.settings.trusted-users = [ "remoteBuilder" ];
+  nix.settings.trusted-users = [
+    "remoteBuilder"
+    "elias"
+  ];
   # Allow unfree
   nixpkgs.config.allowUnfree = true;
   # List packages installed in system profile. To search, run:
@@ -314,6 +291,7 @@
   fonts.enableDefaultPackages = true;
   fonts.packages = with pkgs; [
     cantarell-fonts
+    montserrat
     lmodern
     nerd-fonts.blex-mono
     nerd-fonts.fira-mono
@@ -396,6 +374,21 @@
     dates = "weekly";
     options = "--delete-older-than 30d";
   };
+  # nix.buildMachines = [
+  #   {
+  #     hostName = "eepc";
+  #     system = "x86_64-linux";
+  #     protocol = "ssh-ng";
+  #     maxJobs = 3;
+  #     speedFactor = 2;
+  #     supportedFeatures = [
+  #       "nixos-test"
+  #       "benchmark"
+  #       "big-parallel"
+  #       "kvm"
+  #     ];
+  #   }
+  # ];
   # devenv cachix
   nix.extraOptions = ''
     trusted-users = root elias
