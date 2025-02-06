@@ -107,6 +107,10 @@
   services.ollama = {
     enable = true;
     acceleration = "rocm";
+    host = "0.0.0.0";
+    environmentVariables = {
+      "HSA_OVERRIDE_GFX_VERSION" = "11.0.0";
+    };
   };
 
   # Snapcast client listening to pc
@@ -121,6 +125,20 @@
     serviceConfig = {
       ExecStartPre = "${pkgs.coreutils}/bin/sleep 5"; # Add a 5-second delay before starting snapclient
       ExecStart = "${pkgs.snapcast}/bin/snapclient -h 127.0.0.1 --player pulse -s alsa_output.pci-0000_00_1f.3.analog-stereo";
+    };
+  };
+  # Snapcast client listening to kodi
+  systemd.user.services.snapclient-kodi = {
+    wantedBy = [
+      "default.target"
+    ];
+    after = [
+      "pipewire.service"
+      "pipewire-pulse.service"
+    ];
+    serviceConfig = {
+      ExecStartPre = "${pkgs.coreutils}/bin/sleep 10"; # Add a 10-second delay before starting snapclient
+      ExecStart = "${pkgs.snapcast}/bin/snapclient -h 192.168.1.55 --player pulse -s alsa_output.pci-0000_00_1f.3.analog-stereo";
     };
   };
   # TUI Git server

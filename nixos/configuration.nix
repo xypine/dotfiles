@@ -397,12 +397,12 @@
     options = "--delete-older-than 30d";
   };
   # devenv cachix
-  # nix.extraOptions = ''
-  #   trusted-users = root elias
-  #   extra-substituters = https://devenv.cachix.org
-  #   extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=
-  #   secret-key-files = /home/elias/Sync/rbuilder/cache-priv-key.pem
-  # '';
+  nix.extraOptions = ''
+    trusted-users = root elias
+    extra-substituters = https://devenv.cachix.org
+    extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=
+    secret-key-files = /home/elias/Sync/rbuilder/cache-priv-key.pem
+  '';
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
