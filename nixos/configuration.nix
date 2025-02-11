@@ -156,6 +156,7 @@
     inputs.git-hou.packages."${pkgs.system}".git-hou
     swayosd
     wlsunset
+    nwg-displays
 
     grim # screenshots
     slurp # screenshots
