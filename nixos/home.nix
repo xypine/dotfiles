@@ -225,6 +225,12 @@
     settings = {
       auto_sync = true;
       style = "compact";
+      inline_height = 0;
+      dialect = "uk";
+      workspaces = true;
+      exit_mode = "return-query";
+      keymap_mode = "vim-normal";
+      search_mode = "skim";
     };
   };
 
