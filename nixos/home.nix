@@ -185,6 +185,7 @@
   # terminal file manager
   programs.yazi = {
     enable = true;
+    enableFishIntegration = true;
     settings = {
       manager = {
         sort_by = "natural";
@@ -199,6 +200,10 @@
 
       };
     };
+    theme = (with builtins; fromTOML (readFile ./yazi_gruvbox.toml)) // {
+      # Overrides here
+    };
+  };
 
   gtk = {
     iconTheme = {
@@ -257,6 +262,7 @@
   stylix.targets.hyprland.enable = false;
   stylix.targets.fish.enable = false;
   stylix.targets.swaync.enable = false;
+  stylix.targets.yazi.enable = false;
 
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage
