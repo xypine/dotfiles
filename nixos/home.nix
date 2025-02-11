@@ -199,6 +199,17 @@
 
       };
     };
+
+  gtk = {
+    iconTheme = {
+      package = pkgs.tela-circle-icon-theme.override {
+        colorVariants = [
+          "green"
+          "black"
+        ];
+      };
+      name = "Tela-circle-black";
+    };
   };
 
   programs.fish = {

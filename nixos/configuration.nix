@@ -197,7 +197,6 @@
 
     networkmanagerapplet
     adwaita-icon-theme # Needed for some gtk apps
-    gruvbox-material-gtk-theme
 
     keymapp # For configuring the ZSA Voyager
   ];
