@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  lib,
   ...
 }:
 
@@ -134,11 +135,10 @@
     enable = true;
     userName = "Elias Eskelinen";
     userEmail = "git@eliaseskelinen.fi";
-    extraConfig = {
-      # Sign all commits using ssh key
-      commit.gpgsign = true;
-      gpg.format = "ssh";
-      user.signingkey = "~/.ssh/id_rsa.pub";
+    signing = {
+      signByDefault = true;
+      format = "ssh";
+      key = "~/.ssh/id_rsa.pub";
     };
   };
 
