@@ -89,6 +89,7 @@
         "video"
         "i2c"
         "disk"
+        "adbusers"
       ]; # wheel = Enable ‘sudo’ for the user
       packages = with pkgs; [
         (chromium.override {
@@ -188,6 +189,8 @@
 
     wayvnc # VNC Server
     wlvncc # VNC Client
+
+    android-udev-rules
 
     protonup
     gamemode
