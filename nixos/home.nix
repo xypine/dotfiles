@@ -225,6 +225,7 @@
     };
     shellAliases = {
       xvim = "nix run ~/coding/nixvim-config";
+      nrun = "nix-shell --run $SHELL -p";
     };
     loginShellInit = ''
       if test (id --user $USER) -ge 1000 && test (tty) = "/dev/tty1"
