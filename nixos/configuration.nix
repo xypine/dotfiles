@@ -355,9 +355,11 @@
   };
   # TODO: Figure out a way to compile this in dark mode
   stylix.cursor = {
-    package = pkgs.hackneyed;
-    name = "Hackneyed";
-    size = 24;
+    package = pkgs.hackneyed.overrideAttrs (oldAttrs: {
+      makeFlags = oldAttrs.makeFlags ++ [ "DARK_THEME=1" ];
+    });
+    name = "Hackneyed-Dark";
+    size = 18;
   };
   stylix.targets.plymouth = {
     enable = false;
