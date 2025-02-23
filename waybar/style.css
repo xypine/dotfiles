@@ -69,7 +69,10 @@ tooltip * {
 #tray,
 #mode,
 #window,
-#power-profiles-daemon {
+#power-profiles-daemon,
+#custom-scratchpad-indicator,
+#custom-calendar,
+#custom-notification {
   color: #ebdbb2;
   padding: 5px 5px;
   margin: 0 10px;
