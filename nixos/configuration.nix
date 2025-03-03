@@ -177,8 +177,6 @@
       vendorHash = "sha256-M5n7/QWQ5POWE4hSCMa0+GOVhEDCOILYqkSYIGoy/l0=";
     }))
     waybar
-    rofi-wayland
-    rofimoji
     swaybg
     wl-kbptr
     lxqt.lxqt-policykit
@@ -202,11 +200,6 @@
     adwaita-icon-theme # Needed for some gtk apps
 
     keymapp # For configuring the ZSA Voyager
-  ];
-  nixpkgs.overlays = [
-    (final: prev: {
-      rofimoji = prev.rofimoji.override { rofi = prev.rofi-wayland; };
-    })
   ];
   programs.firefox = {
     enable = true;

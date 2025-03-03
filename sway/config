@@ -19,6 +19,8 @@ exec_always wl-paste --watch $cliphist store
 exec_always wl-paste --type image --watch $cliphist store
 set $cliphist_menu "$helpers/cliphist-rofi-img | rofi -dmenu -p \"Clipboard\" -i | $cliphist decode | ifne sh -c 'cat | wl-copy'"
 bindsym $mod+p exec $cliphist_menu
+set $calculator $rofi_cmd -show calc -modi calc -no-show-match -no-sort -automatic-save-to-history -calc-command "wl-copy {result}"
+bindsym $mod+n exec $calculator
 # Color picker
 bindsym $mod+Shift+p exec grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | tail -n 1 | cut -d ' ' -f 4 | wl-copy
 # Screenshots

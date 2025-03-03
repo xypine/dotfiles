@@ -259,6 +259,18 @@
     };
   };
 
+  programs.rofi = {
+    enable = true;
+    package = pkgs.rofi-wayland;
+    plugins = [
+      pkgs.rofi-calc
+      pkgs.rofi-emoji-wayland
+    ];
+
+    # we have a handwritten config we don't want to replace
+    configPath = ".config/rofi-homemanager/config.rasi";
+  };
+
   # Stylix hyprland integration is enabled by default and breaks things
   stylix.targets.hyprland.enable = false;
   stylix.targets.fish.enable = false;

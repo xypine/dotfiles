@@ -1,6 +1,6 @@
 configuration {
     show-icons: true;
-    font: "BlexMono Nerd Font 12";
+    font: "BlexMono Nerd Font 11";
     icon-theme: "Papirus-Dark";
 
     display-ssh:    "󰣀 ssh";
@@ -10,8 +10,8 @@ configuration {
     display-combi:  "󰕘 combi";
     display-filebrowser: "󰉋 filebrowser:";
 
-    modes: [window,drun,run,ssh,combi,keys];
-    combi-modes: [window,drun,run,ssh];
+    modes: [window,drun,run,ssh,combi,keys,calc,emoji];
+    combi-modes: [window,drun,run,ssh,emoji];
 }
 
 @theme "~/.config/rofi/gruvbox-material.rasi"
