@@ -10,7 +10,7 @@ set $term alacritty
 
 set $rofi_cmd rofi \
         -terminal '$term'
-set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
+set $menu $rofi_cmd -show combi
 
 # Clipboard manager with image support
 set $helpers ~/.config/sway/scripts

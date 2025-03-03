@@ -3,14 +3,15 @@ configuration {
     font: "BlexMono Nerd Font 12";
     icon-theme: "Papirus-Dark";
 
-    display-ssh:    "󰣀 ssh:";
-    display-run:    "󱓞 run:";
-    display-drun:   "󰣖 app:";
-    display-window: "󱂬 window:";
-    display-combi:  "󰕘 combi:";
+    display-ssh:    "󰣀 ssh";
+    display-run:    "󱓞 run";
+    display-drun:   "󰣖 app";
+    display-window: "󱂬 window";
+    display-combi:  "󰕘 combi";
     display-filebrowser: "󰉋 filebrowser:";
 
-    modes: [window,drun,run,ssh,combi];
+    modes: [window,drun,run,ssh,combi,keys];
+    combi-modes: [window,drun,run,ssh];
 }
 
 @theme "~/.config/rofi/gruvbox-material.rasi"
