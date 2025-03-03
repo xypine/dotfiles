@@ -1,14 +1,13 @@
 * {
   all: unset;
   font-size: 14px;
-  font-family: "BlexMono Nerd Font";
+  font-family: "Cantarell";
   transition: 200ms;
 }
 
 .floating-notifications.background .notification-row .notification-background {
   box-shadow:
-    0 0 8px 0 rgba(0, 0, 0, 0.8),
-    inset 0 0 0 1px #1d2021;
+    /*0 0 8px 0 rgba(0, 0, 0, 0.8),*/ inset 0 0 0 1px #1d2021;
   border-radius: 12.6px;
   margin: 18px;
   background-color: #282828;
@@ -142,12 +141,12 @@
 
 .control-center {
   box-shadow:
-    0 0 8px 0 rgba(0, 0, 0, 0.8),
-    inset 0 0 0 1px #1d2021;
+    /*0 0 8px 0 rgba(0, 0, 0, 0.8),*/ inset 0 0 0 1px #1d2021;
   border-radius: 12.6px;
   margin: 18px;
-  background-color: #282828;
+  background-color: rgba(40, 40, 40, 0.75);
   color: #ebdbb2;
+  border: 1px solid #504945;
   padding: 14px;
 }
 

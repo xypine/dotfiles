@@ -29,6 +29,8 @@ bindsym $mod+Shift+s exec grim -g "$(slurp -d)" - | wl-copy --type image/png
 bindsym $mod+Alt+s exec pkill -SIGINT wf-recorder || wf-recorder -y -g "$(slurp)" -f ~/Videos/latest.mkv > ~/Videos/wf-recorder.log 2>&1
 # Toggle waybar
 bindsym $mod+x exec pkill waybar || waybar
+# Toggle notification window
+bindsym $mod+equal exec swaync-client -t
 
 set $wlcwd "$helpers/wlcwd"
 
