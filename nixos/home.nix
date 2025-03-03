@@ -246,7 +246,7 @@
       dialect = "uk";
       workspaces = true;
       exit_mode = "return-query";
-      keymap_mode = "vim-normal";
+      keymap_mode = "vim-insert";
       search_mode = "skim";
     };
   };
