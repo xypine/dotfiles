@@ -5,6 +5,7 @@ depends = [
 	"nvim",
 	"tmux",
 	"sway",
+	"swaync",
 	"swaylock",
 	"waybar",
 	"rofi",
@@ -17,10 +18,7 @@ depends = [
 [default.variables]
 
 [legacy]
-depends = [
-	"alacritty",
-]
-
+depends = ["alacritty"]
 
 [alacritty.files]
 alacritty = "~/.config/alacritty"
@@ -33,6 +31,9 @@ nvim = "~/.config/nvim"
 
 [sway.files]
 sway = "~/.config/sway/"
+
+[swaync.files]
+swaync = "~/.config/swaync/"
 
 [swaylock.files]
 swaylock = "~/.config/swaylock/"
