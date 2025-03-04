@@ -13,4 +13,4 @@ if [ -z "${pkgname}" ]; then
 	exit 1
 fi
 
-nix-shell -p "$pkgname" --run "$SHELL -C \"echo \n[nix-run] available packages: $pkgname\""
+nix-shell -p "$pkgname" --run "$SHELL -C \"echo \n[nix-run] available packages: \\\"$pkgname\\\"\""
