@@ -116,3 +116,7 @@ set $autotiling autotiling
 exec_always $autotiling
 
 include ./config.d/*.conf
+set $nixpkgs_search "$helpers/nix-search | jq -sRr @uri | xargs -I{} xdg-open \"https://search.nixos.org/packages?channel=unstable\&query={}\""
+bindsym $mod+slash exec $nixpkgs_search
+set $nixpkgs_run "$term -e $helpers/nix-run"
+bindsym $mod+period exec $nixpkgs_run

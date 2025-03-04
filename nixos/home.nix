@@ -226,6 +226,9 @@
     shellAliases = {
       xvim = "nix run ~/coding/nixvim-config";
       nrun = "nix-shell --run $SHELL -p";
+      nfnd = "nix search nixpkgs";
+      "nix-search" = "~/.config/sway/scripts/nix-search";
+      "nix-run" = "~/.config/sway/scripts/nix-run";
     };
     loginShellInit = ''
       if test (id --user $USER) -ge 1000 && test (tty) = "/dev/tty1"

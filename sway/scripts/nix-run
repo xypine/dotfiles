@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+if [ -n "$WAYLAND_DISPLAY" ]; then
+    selected=$(nix search nixpkgs ^ --json | jq -r 'to_entries[] | [(.key | split(".") | .[-1]), .value.pname, .value.version, .value.description] | @tsv' | rofi -dmenu -p "nix run")
+else
+    selected=$(nix search nixpkgs ^ --json | jq -r 'to_entries[] | [(.key | split(".") | .[-1]), .value.pname, .value.version, .value.description] | @tsv' | fzf --prompt="nix run " --preview "echo {}" )
+fi
+
+pkgname=$(echo $selected | awk '{print $1}')
+
+if [ -z "${pkgname}" ]; then
+	# No package selected
+	exit 1
+fi
+
+nix-shell -p "$pkgname" --run "$SHELL -C \"echo \n[nix-run] available packages: $pkgname\""
