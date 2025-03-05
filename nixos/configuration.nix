@@ -146,8 +146,8 @@
     tmux
     # C compiler
     zig
-    # Install swayfx from a custom repo
-    inputs.swayfx.packages."${pkgs.system}".swayfx-unwrapped
+    # Patched version of sway with more eye candy
+    swayfx-unwrapped
     # Personal nixvim config
     inputs.nixvim.packages."${pkgs.system}".default
     # Homegrown calendar

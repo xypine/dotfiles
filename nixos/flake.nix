@@ -19,11 +19,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
-    # Patched version of sway with more eye candy
-    swayfx = {
-      url = "github:WillPower3309/swayfx";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     # Firefox nightly
     firefox = {
       url = "github:nix-community/flake-firefox-nightly";
