@@ -1,4 +1,10 @@
-{ config, pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 
 {
   networking.hostName = "compaq";
@@ -40,24 +46,42 @@
     key = "/home/elias/.keys/compaq/key.pem";
     cert = "/home/elias/.keys/compaq/cert.pem";
     overrideDevices = true; # overrides any devices added or deleted through the WebUI
-    overrideFolders = true; # overrides any folders added or deleted through the WebUI
     guiAddress = "0.0.0.0:8384";
     settings = {
       options = {
-        gui = { user = "elias"; };
+        gui = {
+          user = "elias";
+        };
       };
       devices = {
-        "snote" = { id = "QAWFVL3-FPKO7II-HBBAUEZ-SFTRJXW-ONUGZOB-XD37KL3-AA6UEXT-CO2KUQJ"; autoAcceptFolders = true; };
-        "eepc" = { id = "EVNII26-II6BDA5-3ROTCHC-YGTAYKC-JA4P6PM-EOQ24AL-4FGOSRV-BBABNAQ"; autoAcceptFolders = true; };
-        "yoga" = { id = "2X2MYK6-NIVMB4E-ISRV53P-C2XCKIJ-UZBP6JG-C7GCU3P-4MLKTKP-W3V7TQO"; autoAcceptFolders = true; };
-        "op9" = { id = "QHBG3X6-IINRX47-T2XSLHC-G5HZRZV-ZSQQSOS-KQOWOQP-PLJLTAQ-HEBS2QO"; autoAcceptFolders = true; };
+        "snote" = {
+          id = "QAWFVL3-FPKO7II-HBBAUEZ-SFTRJXW-ONUGZOB-XD37KL3-AA6UEXT-CO2KUQJ";
+          autoAcceptFolders = true;
+        };
+        "eepc" = {
+          id = "EVNII26-II6BDA5-3ROTCHC-YGTAYKC-JA4P6PM-EOQ24AL-4FGOSRV-BBABNAQ";
+          autoAcceptFolders = true;
+        };
+        "yoga" = {
+          id = "2X2MYK6-NIVMB4E-ISRV53P-C2XCKIJ-UZBP6JG-C7GCU3P-4MLKTKP-W3V7TQO";
+          autoAcceptFolders = true;
+        };
+        "op9" = {
+          id = "QHBG3X6-IINRX47-T2XSLHC-G5HZRZV-ZSQQSOS-KQOWOQP-PLJLTAQ-HEBS2QO";
+          autoAcceptFolders = true;
+        };
         # "device1" = { id = "DEVICE-ID-GOES-HERE"; };
         # "device2" = { id = "DEVICE-ID-GOES-HERE"; };
       };
       folders = {
         "SNOTE WP" = {
           path = "/home/elias/SNOTE_WP";
-          devices = [ "snote" "op9" "yoga" "eepc" ];
+          devices = [
+            "snote"
+            "op9"
+            "yoga"
+            "eepc"
+          ];
           id = "7b60c-guusr";
         };
       };

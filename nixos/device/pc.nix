@@ -173,7 +173,6 @@
     key = "/home/elias/.keys/eepc/key.pem";
     cert = "/home/elias/.keys/eepc/cert.pem";
     overrideDevices = true; # overrides any devices added or deleted through the WebUI
-    overrideFolders = true; # overrides any folders added or deleted through the WebUI
     guiAddress = "0.0.0.0:8384";
     settings = {
       options = {
