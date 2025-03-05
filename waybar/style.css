@@ -13,21 +13,21 @@
 
 window#waybar {
   border-style: inset;
-  border-bottom: 2px solid rgba(104, 157, 106, 0.1);
-  background: rgba(29, 32, 33, 0.8);
-  color: #ebdbb2;
+  border-bottom: 2px solid rgba(40, 40, 40, 0.9);
+  background: rgba(20, 22, 23, 0.9);
+  color: #d4be98;
   /*border-radius: 16px;*/
 }
 
 tooltip {
-  color: #ebdbb2;
+  color: #d4be98;
   background-color: rgba(0, 10, 5, 0.9);
   text-shadow: none;
   border-radius: 4px;
 }
 
 tooltip * {
-  color: #ebdbb2;
+  color: #d4be98;
   text-shadow: none;
 }
 
@@ -44,7 +44,7 @@ tooltip * {
 }
 
 #workspaces button label {
-  color: #689d6a;
+  color: #d4be98;
 }
 
 #workspaces button.focused label {
@@ -56,8 +56,8 @@ tooltip * {
 }
 
 #mode {
-  background-color: rgba(204, 36, 29, 0.75);
-  color: white;
+  background-color: #ea6962;
+  color: #141617;
 }
 
 #clock,
@@ -73,13 +73,27 @@ tooltip * {
 #custom-scratchpad-indicator,
 #custom-calendar,
 #custom-notification {
-  color: #ebdbb2;
   padding: 5px 5px;
   margin: 0 10px;
 }
 
+#clock,
+#battery,
+#cpu,
+#memory,
+#network,
+#pulseaudio,
+#tray,
+#window,
+#power-profiles-daemon,
+#custom-scratchpad-indicator,
+#custom-calendar,
+#custom-notification {
+  color: #ddc7a1;
+}
+
 #idle_inhibitor {
-  color: #ebdbb2;
+  color: #d4be98;
   padding: 0 10px;
   min-width: 2.3em;
   margin: 0;
@@ -92,16 +106,16 @@ tooltip * {
 }
 
 #custom-music {
-  color: #b8bb26;
+  color: #7daea3;
   margin: 0 15px;
   padding: 0 20px;
-  border-bottom: 2px solid #b8bb26;
+  border-bottom: 2px solid #7daea3;
 }
 
 #clock {
   margin: 0;
-  color: #fabd2f;
-  border-bottom: 2px solid #fabd2f;
+  color: #d8a657;
+  border-bottom: 2px solid #d8a657;
 }
 
 #network.disconnected {
@@ -117,13 +131,13 @@ tooltip * {
 
 #tray menu {
   padding: 0.25em 0.5em;
-  color: #ebdbb2;
+  color: #d4be98;
   background-color: rgba(29, 32, 33, 0.95);
   border-radius: 4px;
 }
 
 #tray menu * {
-  color: #ebdbb2;
+  color: #d4be98;
   border-radius: 4px;
   padding: 0.1em 0.25em;
 }
