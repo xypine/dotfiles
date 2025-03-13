@@ -44,6 +44,16 @@
   .notification-background
   .notification
   .notification-content
+  .image {
+  margin: 7px;
+  margin-right: 14px;
+}
+
+.floating-notifications.background
+  .notification-row
+  .notification-background
+  .notification
+  .notification-content
   .summary {
   color: #ebdbb2;
 }
@@ -202,6 +212,16 @@
   .notification
   .notification-content {
   margin: 7px;
+}
+
+.control-center
+  .notification-row
+  .notification-background
+  .notification
+  .notification-content
+  .image {
+  margin: 7px;
+  margin-right: 14px;
 }
 
 .control-center
