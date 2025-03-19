@@ -66,8 +66,9 @@
 
   # Misc packages
   environment.systemPackages = with pkgs; [
-    bitwig-studio
     nvtopPackages.amd
+    bitwig-studio
+    prismlauncher
   ];
 
   # Backlight control for external displays

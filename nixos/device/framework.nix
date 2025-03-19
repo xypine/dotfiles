@@ -85,6 +85,7 @@
 
   # Misc packages
   environment.systemPackages = with pkgs; [
+    nvtopPackages.amd
     bitwig-studio
     prismlauncher
   ];
@@ -94,6 +95,12 @@
     SleepOperation="suspend-then-hibernate hybrid-sleep suspend hibernate"
     HandlePowerKey="sleep"
   '';
+
+  # Local LLM backend
+  services.ollama = {
+    enable = true;
+    acceleration = "rocm";
+  };
 
   # Snapcast client listening to pc
   systemd.user.services.snapclient-local = {
