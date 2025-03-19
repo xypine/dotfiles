@@ -259,7 +259,7 @@
   programs.starship = {
     enable = true;
     settings = (with builtins; fromTOML (readFile ./starship_preset.toml)) // {
-      # Overrides here
+      palette = lib.mkForce "gruvbox_dark";
     };
   };
 
