@@ -110,6 +110,7 @@
     enable = true;
     acceleration = "rocm";
     host = "0.0.0.0";
+    models = "/mnt/fast/ollama/models";
     environmentVariables = {
       "HSA_OVERRIDE_GFX_VERSION" = "11.0.0";
     };
