@@ -131,6 +131,19 @@
   ];
   # Allow unfree
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = [
+    (final: prev: {
+      wlvncc = prev.wlvncc.overrideAttrs (old: {
+        src = prev.fetchFromGitHub {
+          owner = "any1";
+          repo = "wlvncc";
+          rev = "bec7a54fbb835824ac6f8cefbf50181189a5c510";
+          hash = "sha256-me4u/Jhr5UBNW07Ug71y5biLdJFqdcgC21uUcC/3bSU=";
+        };
+      });
+    })
+  ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
