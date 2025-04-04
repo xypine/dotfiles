@@ -88,6 +88,7 @@
     nvtopPackages.amd
     bitwig-studio
     prismlauncher
+    lutris
   ];
 
   # allow hibernation or hybrid sleep
