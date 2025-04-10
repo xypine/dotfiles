@@ -7,8 +7,9 @@
         "idle_inhibitor",
         "sway/workspaces",
         "sway/mode",
-        "custom/scratchpad-indicator",
-        "custom/music"
+        "cpu",
+        "memory",
+        "custom/scratchpad-indicator"
     ],
     "modules-center": [
         "custom/calendar",
@@ -16,11 +17,10 @@
         "custom/notification"
     ],
     "modules-right": [
-        "cpu",
-        "memory",
-        "tray",
+        "custom/music",
         "pulseaudio",
         "battery",
+        "tray",
         "power-profiles-daemon"
     ],
     "sway/workspaces": {
@@ -57,7 +57,7 @@
         // Human Friendly
         "format-alt": "{:%A, %B %d at %I:%M %p}",
         // 24hr Robot Friendly
-        "format": "{:%Y-%m-%d - %H:%M}"
+        "format": "{:%m-%d %H:%M}"
     },
     "cpu": {
         "format": "{usage}% ",
@@ -83,8 +83,7 @@
             " ",
             " ",
             " "
-        ],
-        "max-length": 25
+        ]
     },
     "power-profiles-daemon": {
         "format": "{icon}",
@@ -124,7 +123,7 @@
         },
         "on-click": "pavucontrol"
     },
-    "custom/music": {
+    "custom/music-meta": {
         "return-type": "json",
         "max-length": 60,
         "interval": 1, // Remove this if your script is endless and write in loop
@@ -167,5 +166,23 @@
         "format": " {}",
         "on-click": "swaymsg 'scratchpad show'",
         "on-click-right": "swaymsg 'move scratchpad'"
+    },
+    "custom/music": {
+        "format": "{icon}{}",
+        "format-icons": {
+            "Playing": "",
+            "Paused": "⏸ ",
+            "Stopped": "⏹ "
+        },
+        "escape": true,
+        "tooltip": true,
+        "exec": "$HOME/.config/waybar/cavay.sh",
+        "return-type": "json",
+        "on-click": "playerctl play-pause",
+        "on-scroll-up": "playerctl previous",
+        "on-scroll-down": "playerctl next",
+        "on-click-right": "g4music",
+        "min-length": 16,
+        "max-length": 30
     }
 }

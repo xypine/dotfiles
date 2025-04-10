@@ -33,7 +33,7 @@ tooltip * {
 
 #workspaces,
 #clock,
-#custom-music,
+#custom-music-meta,
 #window {
   font-weight: 800;
 }
@@ -105,7 +105,8 @@ tooltip * {
   background-color: rgba(104, 157, 106, 0.75);
 }
 
-#custom-music {
+#custom-music,
+#custom-music-meta {
   color: #7daea3;
   margin: 0 15px;
   padding: 0 20px;

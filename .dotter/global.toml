@@ -39,7 +39,7 @@ swaync = "~/.config/swaync/"
 swaylock = "~/.config/swaylock/"
 
 [waybar.files]
-waybar = "~/.config/waybar/"
+waybar = { target = "~/.config/waybar/", type = "symbolic" }
 
 [rofi.files]
 rofi = "~/.config/rofi/"

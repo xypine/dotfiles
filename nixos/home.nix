@@ -128,6 +128,11 @@
     playerctl
     # EQ
     easyeffects
+    # Visualizer
+    cava
+    libcava
+    iniparser
+    fftw
   ];
 
   # basic configuration of git, please change to your own
