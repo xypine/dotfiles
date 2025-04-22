@@ -113,7 +113,7 @@
     darkman
     #blender-hip
     clinfo
-    qbittorrent
+    qbittorrent-nox
     discord
     croc
     obsidian
