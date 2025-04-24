@@ -3,7 +3,6 @@
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
 {
-  config,
   pkgs,
   inputs,
   ...
@@ -39,35 +38,10 @@
     useXkbConfig = true; # use xkb.options in tty.
   };
 
-  # services.displayManager.sddm.enable = true;
-  # services.displayManager.sddm.wayland.enable = true;
-  # services.displayManager.sddm.theme = "xypine";
-  # services.displayManager.sddm.settings = {
-  #   Theme = {
-  #     ThemeDir = "/etc/sddm/themes";
-  #   };
-  # };
-  # services.displayManager.defaultSession = "swayfx";
-  # services.displayManager.session = [
-  #   {
-  #     name = "Sway";
-  #     manage = "desktop";
-  #     start = "sway";
-  #   }
-  # ];
-
-  # Configure keymap in X11
-  services.xserver.xkb.layout = "eu";
-  services.xserver.xkb.options = "caps:escape";
-  # Enable support for zsa keyboards, such as the voyager
-  hardware.keyboard.zsa.enable = true;
-
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
   # Enable sound.
-  # hardware.pulseaudio.enable = true;
-  # OR
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -91,16 +65,6 @@
         "disk"
         "adbusers"
       ]; # wheel = Enable ‘sudo’ for the user
-      packages = with pkgs; [
-        (chromium.override {
-          commandLineArgs = [
-            "--enable-features=VaapiVideoDecodeLinuxGL"
-            "--ignore-gpu-blocklist"
-            "--enable-zero-copy"
-          ];
-        })
-        telegram-desktop
-      ];
     };
     remoteBuilder = {
       isNormalUser = true;
@@ -116,8 +80,6 @@
   };
   users.defaultUserShell = pkgs.fish;
   users.groups.remotebuild = { };
-  # native wayland for chromium & co
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # Enable flakes
   nix.settings.experimental-features = [
@@ -147,77 +109,27 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    nh
     git
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim
     wget
     curl
     fastfetch
-    mpv
-    pavucontrol
     htop
     fd
     tmux
     # C compiler
     zig
-    # Patched version of sway with more eye candy
-    swayfx-unwrapped
     # Personal nixvim config
     inputs.nixvim.packages."${pkgs.system}".default
     # Homegrown calendar
     inputs.olmonoko.packages."${pkgs.system}".olmonokod
     # rewrite of git-hours
     inputs.git-hou.packages."${pkgs.system}".git-hou
-    swayosd
-    wlsunset
-    nwg-displays
-
-    grim # screenshots
-    slurp # screenshots
-    wf-recorder # screenrecording
-    wl-clipboard
-    imagemagick # needed for the colorpicker
-    swaylock
-    swayidle
-    autotiling
-    (cliphist.overrideAttrs (_old: {
-      src = pkgs.fetchFromGitHub {
-        owner = "sentriz";
-        repo = "cliphist";
-        rev = "c49dcd26168f704324d90d23b9381f39c30572bd";
-        sha256 = "sha256-2mn55DeF8Yxq5jwQAjAcvZAwAg+pZ4BkEitP6S2N0HY=";
-      };
-      vendorHash = "sha256-M5n7/QWQ5POWE4hSCMa0+GOVhEDCOILYqkSYIGoy/l0=";
-    }))
-    waybar
-    swaybg
-    wl-kbptr
-    lxqt.lxqt-policykit
-    foot
-    xdg-utils
-
-    brightnessctl
-
-    wayvnc # VNC Server
-    wlvncc # VNC Client
-
+    imagemagick
     android-udev-rules
-
-    protonup
-    gamemode
-    mangohud
-
     docker-compose
-
-    networkmanagerapplet
-    adwaita-icon-theme # Needed for some gtk apps
-
-    keymapp # For configuring the ZSA Voyager
   ];
-  programs.firefox = {
-    enable = true;
-    # Nightly firefox
-    package = inputs.firefox.packages.${pkgs.system}.firefox-nightly-bin;
-  };
 
   services.snapserver = {
     enable = false;
@@ -259,32 +171,9 @@
   # #   theme = "tjkirch";
   # # };
 
-  # Required for swaylock to accept the correct password
-  security.pam.services.swaylock = { };
-
-  xdg.portal = {
-    enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-wlr
-      pkgs.xdg-desktop-portal-gtk
-    ];
-  };
-  xdg.portal.config.common.default = "*";
-
-  environment.variables.EDITOR = "nvim";
-
-  xdg.mime.defaultApplications = {
-    "application/pdf" = "firefox-nightly.desktop";
-    "text/html" = "firefox-nightly.desktop";
-    "x-scheme-handler/http" = "firefox-nightly.desktop";
-    "x-scheme-handler/https" = "firefox-nightly.desktop";
-    "x-scheme-handler/about" = "firefox-nightly.desktop";
-    "x-scheme-handler/unknown" = "firefox-nightly.desktop";
-  };
-
-  # Install steam
-  programs.steam = {
-    enable = true;
+  environment.variables = {
+    FLAKE = "/etc/nixos";
+    EDITOR = "nvim";
   };
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -294,16 +183,6 @@
     enable = true;
     enableSSHSupport = true;
   };
-
-  # Fonts
-  fonts.enableDefaultPackages = true;
-  fonts.packages = with pkgs; [
-    cantarell-fonts
-    montserrat
-    lmodern
-    nerd-fonts.blex-mono
-    nerd-fonts.fira-mono
-  ];
 
   # List services that you want to enable:
 
@@ -328,55 +207,6 @@
 
   # Enable polkit
   security.polkit.enable = true;
-  services.udisks2.enable = true;
-
-  stylix.enable = true;
-  stylix.image = pkgs.fetchurl {
-    name = "ferns.jpg";
-    url = "https://i.redd.it/uhzbtokol3p41.jpg";
-    sha256 = "a0bb008e0e66addbe5f1e1162ab804fe3f9654d0622f0e40217a59efdffd8854";
-  };
-  # stylix.image = pkgs.fetchurl {
-  #   name = "metro.jpg";
-  #   url = "https://wallpapercrafter.com/desktop/17728-night-city-skyscraper-city-lights-metropolis-new-york-united-states-4k.jpg";
-  #   sha256 = "sha256-hXaV1RpytljUYh1wRMKx+wmsKruo//emGCjoNUxPWPA=";
-  # };
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
-  stylix.polarity = "dark";
-  stylix.opacity.terminal = 0.925;
-  stylix.fonts = {
-    sansSerif = {
-      package = pkgs.inter;
-      name = "Inter";
-    };
-    monospace = {
-      package = pkgs.nerd-fonts.blex-mono;
-      name = "BlexMono Nerd Font";
-    };
-    emoji = {
-      package = pkgs.noto-fonts-emoji;
-      name = "Noto Color Emoji";
-    };
-  };
-  # TODO: Figure out a way to compile this in dark mode
-  stylix.cursor = {
-    package = pkgs.hackneyed.overrideAttrs (oldAttrs: {
-      makeFlags = oldAttrs.makeFlags ++ [ "DARK_THEME=1" ];
-    });
-    name = "Hackneyed-Dark";
-    size = 18;
-  };
-  stylix.targets.plymouth = {
-    enable = false;
-  };
-  stylix.targets.console.enable = false;
-
-  services.udev.packages = [ pkgs.swayosd ];
-
-  environment.sessionVariables = {
-    # only needed for Sway
-    XDG_CURRENT_DESKTOP = "sway";
-  };
 
   # Automatically remove old versions and unused packages
   nix.gc = {
@@ -384,21 +214,7 @@
     dates = "weekly";
     options = "--delete-older-than 30d";
   };
-  # nix.buildMachines = [
-  #   {
-  #     hostName = "eepc";
-  #     system = "x86_64-linux";
-  #     protocol = "ssh-ng";
-  #     maxJobs = 3;
-  #     speedFactor = 2;
-  #     supportedFeatures = [
-  #       "nixos-test"
-  #       "benchmark"
-  #       "big-parallel"
-  #       "kvm"
-  #     ];
-  #   }
-  # ];
+
   # devenv cachix
   nix.extraOptions = ''
     trusted-users = root elias

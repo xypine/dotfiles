@@ -7,6 +7,9 @@
 
 {
   networking.hostName = "framework";
+  imports = [
+    ../modules/graphical.nix
+  ];
 
   boot = {
     initrd.systemd.enable = true;

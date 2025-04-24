@@ -7,6 +7,9 @@
 
 {
   networking.hostName = "eepc";
+  imports = [
+    ../modules/graphical.nix
+  ];
 
   boot = {
     initrd.systemd.enable = true;
