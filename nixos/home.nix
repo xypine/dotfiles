@@ -227,6 +227,8 @@
     functions = {
       # Disable default greeting
       fish_greeting = "";
+      # Use vim keybindings
+      fish_key_bindings = "fish_vi_key_bindings";
     };
     shellAliases = {
       xvim = "nix run ~/coding/nixvim-config";
@@ -240,6 +242,15 @@
       if test (id --user $USER) -ge 1000 && test (tty) = "/dev/tty1"
         exec sway
       end
+    '';
+    interactiveShellInit = ''
+      # 1. Switch to Vim-style bindings
+      fish_vi_key_bindings           # default “insert” mode
+
+      # 2. (Optional) nicer cursor shapes per mode
+      set -g fish_cursor_default block      # normal mode
+      set -g fish_cursor_insert  line       # insert mode
+      set -g fish_cursor_visual block blink # visual mode
     '';
   };
   # Cooler shell history

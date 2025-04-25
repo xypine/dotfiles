@@ -172,7 +172,6 @@
   # # };
 
   environment.variables = {
-    FLAKE = "/etc/nixos";
     EDITOR = "nvim";
   };
 
