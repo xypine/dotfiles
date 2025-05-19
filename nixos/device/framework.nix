@@ -235,6 +235,8 @@
         "big-parallel"
         "kvm"
       ];
+      maxJobs = 20;
+      speedFactor = 2;
     }
   ];
 
