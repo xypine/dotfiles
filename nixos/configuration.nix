@@ -80,6 +80,21 @@
   };
   users.defaultUserShell = pkgs.fish;
   users.groups.remotebuild = { };
+  # for sst
+  security.sudo.extraRules = [
+    {
+      users = [ "elias" ];
+      commands = [
+        {
+          command = "/opt/sst/tunnel tunnel start *";
+          options = [
+            "NOPASSWD"
+            "SETENV"
+          ];
+        }
+      ];
+    }
+  ];
 
   # Enable flakes
   nix.settings.experimental-features = [

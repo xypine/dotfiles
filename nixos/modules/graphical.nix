@@ -145,6 +145,11 @@
         "--enable-zero-copy"
       ];
     })
+
+    # OCR
+    gnome-frog
+
+    inputs.claude-desktop.packages.${system}.claude-desktop
   ];
 
   # GUI programs

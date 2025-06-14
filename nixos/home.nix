@@ -208,6 +208,32 @@
     theme = (with builtins; fromTOML (readFile ./yazi_gruvbox.toml)) // {
       # Overrides here
     };
+    plugins = {
+      projects = pkgs.yaziPlugins.projects;
+      starship = pkgs.yaziPlugins.starship;
+    };
+    initLua = ''
+      require("starship"):setup()
+      require("projects"):setup({
+        save = {
+            method = "yazi", -- yazi | lua
+        },
+        last = {
+            update_after_save = true,
+            update_after_load = true,
+            load_after_start = false,
+        },
+        merge = {
+            quit_after_merge = false,
+        },
+        notify = {
+            enable = true,
+            title = "Projects",
+            timeout = 3,
+            level = "info",
+        },
+      })
+    '';
   };
 
   gtk = {
