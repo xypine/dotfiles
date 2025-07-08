@@ -17,7 +17,7 @@
         "custom/notification"
     ],
     "modules-right": [
-        "custom/music",
+        // "custom/music",
         "pulseaudio",
         "battery",
         "tray",

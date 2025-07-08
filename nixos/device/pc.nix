@@ -72,6 +72,7 @@
     nvtopPackages.amd
     bitwig-studio
     prismlauncher
+    openrgb-with-all-plugins
   ];
 
   # Backlight control for external displays
@@ -147,6 +148,13 @@
       ExecStart = "${pkgs.snapcast}/bin/snapclient -h 192.168.1.55 --player pulse -s alsa_output.pci-0000_00_1f.3.analog-stereo";
     };
   };
+
+  # OpenRGB
+  services.hardware.openrgb = {
+    enable = true;
+    package = pkgs.openrgb-with-all-plugins;
+  };
+
   # TUI Git server
   services.soft-serve = {
     enable = true;
