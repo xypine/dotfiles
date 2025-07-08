@@ -43,6 +43,10 @@
       url = "github:xypine/git-hou";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Supernote as a drawing tablet
+    inkflow = {
+      url = "github:xypine/supernote-inkflow-nixos";
+    };
 
     # The COSMIC Desktop environment
     nixos-cosmic = {
@@ -63,6 +67,7 @@
       home-manager,
       stylix,
       nixos-cosmic,
+      inkflow,
       ...
     }:
     {
@@ -133,6 +138,7 @@
 
           nixos-hardware.nixosModules.framework-13-7040-amd
 
+          inkflow.nixosModules.supernoteWaylandFix
           stylix.nixosModules.stylix
 
           home-manager.nixosModules.home-manager

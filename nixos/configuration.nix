@@ -51,7 +51,7 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.libinput.enable = true;
+  services.libinput.enable = true;
 
   users.users = {
     elias = {
@@ -65,6 +65,14 @@
         "disk"
         "adbusers"
       ]; # wheel = Enable ‘sudo’ for the user
+    };
+    joonas = {
+      isNormalUser = true;
+      description = "Remote User";
+      extraGroups = [ "networkmanager" ];
+      hashedPassword = "$6$VyXYE4XSUIAFJufv$M7BSOVS1KM5HEegHtU9XVNbOIQqSGt85IEM1537oMj7ZaP/ABRHJJdbIWTx6PBHpq8nZ92h87kWCoJiUqgrrh1";
+      shell = pkgs.bash;
+      createHome = true;
     };
     remoteBuilder = {
       isNormalUser = true;

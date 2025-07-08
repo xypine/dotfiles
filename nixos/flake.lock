@@ -558,6 +558,21 @@
         "type": "github"
       }
     },
+    "inkflow": {
+      "locked": {
+        "lastModified": 1750756253,
+        "narHash": "sha256-agYhN7ClI0E+E1PQD14BdnH7zuU0OjQBhtpyELK4vog=",
+        "owner": "xypine",
+        "repo": "supernote-inkflow-nixos",
+        "rev": "1d97234d07ef32ebf9c299fbcd53e654b834fe81",
+        "type": "github"
+      },
+      "original": {
+        "owner": "xypine",
+        "repo": "supernote-inkflow-nixos",
+        "type": "github"
+      }
+    },
     "ixx": {
       "inputs": {
         "flake-utils": [
@@ -847,6 +862,7 @@
         "firefox": "firefox",
         "git-hou": "git-hou",
         "home-manager": "home-manager",
+        "inkflow": "inkflow",
         "nixos-cosmic": "nixos-cosmic",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
