@@ -116,11 +116,12 @@
     ];
     serviceConfig = {
       ExecStart = "${pkgs.snapcast}/bin/snapclient -h eepc";
+      Restart = "always";
     };
   };
 
-  # Snapcast client listening to kodi
-  systemd.user.services.snapclient-kodi = {
+  # Snapcast client listening to homeassistant
+  systemd.user.services.snapclient-ha = {
     wantedBy = [
       "pipewire.service"
     ];
@@ -128,7 +129,8 @@
       "pipewire.service"
     ];
     serviceConfig = {
-      ExecStart = "${pkgs.snapcast}/bin/snapclient -h 192.168.1.55";
+      ExecStart = "${pkgs.snapcast}/bin/snapclient -h homeassistant";
+      Restart = "always";
     };
   };
 
