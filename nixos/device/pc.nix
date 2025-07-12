@@ -57,6 +57,14 @@
     ];
   };
 
+  # allow hibernation or hybrid sleep
+  services.logind.extraConfig = ''
+    SleepOperation="suspend-then-hibernate hybrid-sleep suspend hibernate"
+  '';
+  services.logind.powerKey = "sleep";
+  services.logind.powerKeyLongPress = "poweroff";
+  services.logind.hibernateKey = "sleep";
+
   # Enable networking
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
@@ -120,8 +128,22 @@
     };
   };
 
-  # Snapcast client listening to pc
-  systemd.user.services.snapclient-local = {
+  # # Snapcast client listening to pc
+  # systemd.user.services.snapclient-local = {
+  #   wantedBy = [
+  #     "default.target"
+  #   ];
+  #   after = [
+  #     "pipewire.service"
+  #     "pipewire-pulse.service"
+  #   ];
+  #   serviceConfig = {
+  #     ExecStartPre = "${pkgs.coreutils}/bin/sleep 5"; # Add a 5-second delay before starting snapclient
+  #     ExecStart = "${pkgs.snapcast}/bin/snapclient -h 127.0.0.1 --player pulse -s alsa_output.pci-0000_00_1f.3.analog-stereo";
+  #   };
+  # };
+  # Snapcast client listening to homeassistant
+  systemd.user.services.snapclient-ha = {
     wantedBy = [
       "default.target"
     ];
@@ -130,22 +152,10 @@
       "pipewire-pulse.service"
     ];
     serviceConfig = {
-      ExecStartPre = "${pkgs.coreutils}/bin/sleep 5"; # Add a 5-second delay before starting snapclient
-      ExecStart = "${pkgs.snapcast}/bin/snapclient -h 127.0.0.1 --player pulse -s alsa_output.pci-0000_00_1f.3.analog-stereo";
-    };
-  };
-  # Snapcast client listening to kodi
-  systemd.user.services.snapclient-kodi = {
-    wantedBy = [
-      "default.target"
-    ];
-    after = [
-      "pipewire.service"
-      "pipewire-pulse.service"
-    ];
-    serviceConfig = {
-      ExecStartPre = "${pkgs.coreutils}/bin/sleep 10"; # Add a 10-second delay before starting snapclient
-      ExecStart = "${pkgs.snapcast}/bin/snapclient -h 192.168.1.55 --player pulse -s alsa_output.pci-0000_00_1f.3.analog-stereo";
+      ExecStartPre = "${pkgs.coreutils}/bin/sleep 10"; # Add a 5-second delay before starting snapclient
+      ExecStart = "${pkgs.snapcast}/bin/snapclient -h homeassistant --player pulse -s alsa_output.pci-0000_00_1f.3.analog-stereo";
+      Restart = "always";
+
     };
   };
 
