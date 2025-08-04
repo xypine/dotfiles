@@ -81,6 +81,7 @@
     bitwig-studio
     prismlauncher
     openrgb-with-all-plugins
+    r2modman
   ];
 
   # Backlight control for external displays
