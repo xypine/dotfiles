@@ -82,6 +82,9 @@
     prismlauncher
     openrgb-with-all-plugins
     r2modman
+    (pkgs.llama-cpp.override {
+      rocmSupport = true;
+    })
   ];
 
   # Backlight control for external displays
