@@ -135,6 +135,9 @@
     fftw
   ];
 
+  services.ssh-agent = {
+    enable = true;
+  };
   # basic configuration of git, please change to your own
   programs.git = {
     enable = true;
@@ -144,6 +147,23 @@
       signByDefault = true;
       format = "ssh";
       key = "~/.ssh/id_rsa.pub";
+    };
+  };
+  programs.jujutsu = {
+    enable = true;
+    settings = {
+      user = {
+        name = "Elias Eskelinen";
+        email = "git@eliaseskelinen.fi";
+      };
+      signing = {
+        behavior = "drop";
+        backend = "ssh";
+        key = "~/.ssh/id_rsa.pub";
+      };
+      git = {
+        sign-on-push = true;
+      };
     };
   };
 
