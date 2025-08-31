@@ -134,6 +134,7 @@
   environment.systemPackages = with pkgs; [
     nh
     git
+    jujutsu
     vim
     wget
     curl
