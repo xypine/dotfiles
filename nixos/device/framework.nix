@@ -92,6 +92,7 @@
     bitwig-studio
     prismlauncher
     lutris
+    libreoffice
   ];
 
   # allow hibernation or hybrid sleep
