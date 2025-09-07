@@ -96,10 +96,10 @@
   ];
 
   # allow hibernation or hybrid sleep
-  services.logind.extraConfig = ''
-    SleepOperation="suspend-then-hibernate hybrid-sleep suspend hibernate"
-    HandlePowerKey="sleep"
-  '';
+  services.logind.settings.Login = {
+    SleepOperation = "suspend-then-hibernate hybrid-sleep suspend hibernate";
+    HandlePowerKey = "sleep";
+  };
 
   # Local LLM backend
   services.ollama = {

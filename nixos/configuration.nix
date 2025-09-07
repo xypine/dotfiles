@@ -126,6 +126,20 @@
           hash = "sha256-me4u/Jhr5UBNW07Ug71y5biLdJFqdcgC21uUcC/3bSU=";
         };
       });
+      pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
+        (python-final: python-prev: {
+          # Workaround for bug #437058
+          i3ipc = python-prev.i3ipc.overridePythonAttrs (oldAttrs: {
+            doCheck = false;
+            checkPhase = ''
+              echo "Skipping pytest in Nix build"
+            '';
+            installCheckPhase = ''
+              echo "Skipping install checks in Nix build"
+            '';
+          });
+        })
+      ];
     })
   ];
 
