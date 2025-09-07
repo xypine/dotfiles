@@ -158,8 +158,8 @@
       };
       signing = {
         behavior = "drop";
-        backend = "ssh";
-        key = "~/.ssh/id_rsa.pub";
+        backend = "gpg";
+        key = "codesign@eliaseskelinen.fi";
       };
       git = {
         sign-on-push = true;
