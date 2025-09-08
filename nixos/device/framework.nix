@@ -86,6 +86,12 @@
   # Firmware upgrades
   services.fwupd.enable = true;
 
+  # Smarter fan control
+  hardware.fw-fanctrl = {
+    enable = true;
+    disableBatteryTempCheck = false;
+  };
+
   # Misc packages
   environment.systemPackages = with pkgs; [
     nvtopPackages.amd
