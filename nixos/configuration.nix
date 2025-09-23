@@ -171,11 +171,15 @@
 
   services.snapserver = {
     enable = false;
-    codec = "flac";
-    streams = {
-      pipewire = {
-        type = "pipe";
-        location = "/run/snapserver/pipewire";
+    settings = {
+      stream = {
+        codec = "flac";
+        source = {
+          pipewire = {
+            type = "pipe";
+            location = "/run/snapserver/pipewire";
+          };
+        };
       };
     };
   };
