@@ -85,6 +85,7 @@
     (pkgs.llama-cpp.override {
       rocmSupport = true;
     })
+    blender-hip
   ];
 
   # Backlight control for external displays
