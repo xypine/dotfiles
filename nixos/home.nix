@@ -156,6 +156,9 @@
         name = "Elias Eskelinen";
         email = "git@eliaseskelinen.fi";
       };
+      ui = {
+        pager = ":builtin";
+      };
       signing = {
         behavior = "drop";
         backend = "gpg";
