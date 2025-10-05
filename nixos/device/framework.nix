@@ -137,8 +137,11 @@
 
   # allow hibernation or hybrid sleep
   services.logind.settings.Login = {
-    SleepOperation = "suspend-then-hibernate hybrid-sleep suspend hibernate";
     HandlePowerKey = "sleep";
+    HandlePowerKeyLongPress = "poweroff";
+    HandleHibrenateKey = "sleep";
+    # allow hibernation or hybrid sleep
+    SleepOperation = "suspend-then-hibernate hybrid-sleep suspend hibernate";
   };
 
   # Local LLM backend

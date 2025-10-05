@@ -57,13 +57,13 @@
     ];
   };
 
-  # allow hibernation or hybrid sleep
-  services.logind.extraConfig = ''
-    SleepOperation="suspend-then-hibernate hybrid-sleep suspend hibernate"
-  '';
-  services.logind.powerKey = "sleep";
-  services.logind.powerKeyLongPress = "poweroff";
-  services.logind.hibernateKey = "sleep";
+  services.logind.settings.Login = {
+    HandlePowerKey = "sleep";
+    HandlePowerKeyLongPress = "poweroff";
+    HandleHibrenateKey = "sleep";
+    # allow hibernation or hybrid sleep
+    SleepOperation = "suspend-then-hibernate hybrid-sleep suspend hibernate";
+  };
 
   # Enable networking
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
