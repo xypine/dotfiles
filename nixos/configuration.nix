@@ -148,6 +148,7 @@
   environment.systemPackages = with pkgs; [
     nh
     git
+    more
     jujutsu
     vim
     wget
@@ -214,6 +215,7 @@
   # # };
 
   environment.variables = {
+    PAGER = "more";
     EDITOR = "nvim";
   };
 
