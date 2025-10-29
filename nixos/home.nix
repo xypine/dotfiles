@@ -286,6 +286,7 @@
       "nix-search" = "~/.config/sway/scripts/nix-search";
       "nix-run" = "~/.config/sway/scripts/nix-run";
       "sway-runner" = "swaymsg -s $XDG_RUNTIME_DIR/sway*.sock exec";
+      tmc = "flatpak run fi.mooc.tmc.tmc-cli-rust";
     };
     loginShellInit = ''
       if test (id --user $USER) -ge 1000 && test (tty) = "/dev/tty1"
