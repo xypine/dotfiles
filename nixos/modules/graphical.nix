@@ -65,7 +65,7 @@
         name = "BlexMono Nerd Font";
       };
       emoji = {
-        package = pkgs.noto-fonts-emoji;
+        package = pkgs.noto-fonts-color-emoji;
         name = "Noto Color Emoji";
       };
     };
@@ -133,7 +133,7 @@
     wlvncc # VNC Client
     networkmanagerapplet
     adwaita-icon-theme # Needed for some gtk apps
-    protonup
+    protonup-ng
     gamemode
     mangohud
     keymapp # For configuring the ZSA Voyager

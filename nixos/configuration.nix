@@ -166,7 +166,6 @@
     # rewrite of git-hours
     inputs.git-hou.packages."${pkgs.system}".git-hou
     imagemagick
-    android-udev-rules
     docker-compose
   ];
 
