@@ -147,7 +147,7 @@
   # Local LLM backend
   services.ollama = {
     enable = true;
-    acceleration = "rocm";
+    package = pkgs.ollama-vulkan;
   };
 
   # Snapcast client listening to pc
