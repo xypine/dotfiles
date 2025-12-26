@@ -88,36 +88,37 @@
 
   # Smarter fan control
   hardware.fw-fanctrl = {
-    enable = true;
+    enable = false;
     config = {
+      defaultStrategy = "school";
       strategies = {
         "school" = {
           fanSpeedUpdateFrequency = 2;
           movingAverageInterval = 40;
           speedCurve = [
             {
-              temp = 30;
-              speed = 10;
+              temp = 35;
+              speed = 0;
             }
             {
               temp = 40;
-              speed = 20;
+              speed = 55;
             }
             {
               temp = 65;
-              speed = 25;
+              speed = 60;
             }
             {
               temp = 70;
-              speed = 30;
+              speed = 70;
             }
             {
               temp = 80;
-              speed = 50;
+              speed = 80;
             }
             {
               temp = 85;
-              speed = 70;
+              speed = 90;
             }
           ];
         };
