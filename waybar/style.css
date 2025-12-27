@@ -40,7 +40,7 @@ tooltip * {
 
 /* Workspace Buttons */
 #workspaces button {
-  min-width: 3.5em;
+  min-width: 2.5em;
 }
 
 #workspaces button label {
