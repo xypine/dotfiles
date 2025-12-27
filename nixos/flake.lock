@@ -601,11 +601,11 @@
         "nixvim": "nixvim_2"
       },
       "locked": {
-        "lastModified": 1766842718,
-        "narHash": "sha256-cpq60ByECVf7TJTFXbPHobUwa2yfWjorS5uYQ0r4oCY=",
+        "lastModified": 1766843409,
+        "narHash": "sha256-TLw6uqouqdWoJQld3sLfAWpVqggdq68BeTRceVsaV2k=",
         "owner": "xypine",
         "repo": "nixvim",
-        "rev": "8c5fb0e9a631f6b1d946e7f92d8baa94c4e4600a",
+        "rev": "1cbc04f405b1e59701c8659d94a1fb529d93a31c",
         "type": "github"
       },
       "original": {
