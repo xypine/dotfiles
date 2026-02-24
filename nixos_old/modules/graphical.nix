@@ -14,21 +14,32 @@
   # Enable support for zsa keyboards, such as the voyager
   hardware.keyboard.zsa.enable = true;
 
-  # Wayland & XDG portals
-  #######################
-  environment.sessionVariables = {
-    NIXOS_OZONE_WL = "1"; # native wayland for chromium & co
-    XDG_CURRENT_DESKTOP = "sway";
+  # Enable Plasma
+  services.desktopManager.plasma6.enable = true;
+
+  # Default display manager for Plasma
+  services.displayManager.sddm = {
+    enable = true;
+
+    # To use Wayland (Experimental for SDDM)
+    wayland.enable = true;
   };
 
-  xdg.portal = {
-    enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-wlr
-      pkgs.xdg-desktop-portal-gtk
-    ];
-    config.common.default = "*";
-  };
+  # Wayland & XDG portals
+  #######################
+  # environment.sessionVariables = {
+  #   NIXOS_OZONE_WL = "1"; # native wayland for chromium & co
+  #   XDG_CURRENT_DESKTOP = "sway";
+  # };
+  #
+  # xdg.portal = {
+  #   enable = true;
+  #   extraPortals = [
+  #     pkgs.xdg-desktop-portal-wlr
+  #     pkgs.xdg-desktop-portal-gtk
+  #   ];
+  #   config.common.default = "*";
+  # };
 
   # Display manager / session
   ###########################
@@ -169,7 +180,7 @@
 
   # udev rules
   ############
-  services.udev.packages = [ pkgs.swayosd ];
+  # services.udev.packages = [ pkgs.swayosd ];
 
   # services
   ##########

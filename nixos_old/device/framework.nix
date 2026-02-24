@@ -58,10 +58,10 @@
   };
 
   # Automatic login after boot
-  services.getty = {
-    autologinUser = "elias";
-    autologinOnce = true; # Only immediately after boot
-  };
+  # services.getty = {
+  #   autologinUser = "elias";
+  #   autologinOnce = true; # Only immediately after boot
+  # };
 
   # services.displayManager.cosmic-greeter.enable = true;
   # services.desktopManager.cosmic.enable = true;
@@ -76,9 +76,6 @@
 
   # Power profiles (performance, balanced, powersave)
   services.power-profiles-daemon.enable = true;
-
-  # Backlight control
-  programs.light.enable = true;
 
   # Fingerprint sensor support
   services.fprintd.enable = true;
@@ -269,6 +266,21 @@
 
   nix.distributedBuilds = true;
   nix.settings.builders-use-substitutes = true;
+
+  systemd.user.services.rclone-gdrive = {
+    after = [ "network-online.target" ];
+    wants = [ "network-online.target" ];
+    wantedBy = [ "default.target" ];
+    description = "RClone Mount for Google Drive";
+    serviceConfig = {
+      ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p %h/GDrive";
+      ExecStart = "${pkgs.rclone}/bin/rclone mount gdrive: %h/GDrive --vfs-cache-mode full";
+      ExecStop = "${pkgs.fuse}/bin/fusermount -u %h/GDrive";
+      Restart = "on-failure";
+      RestartSec = "10s";
+      Environment = [ "PATH=/run/wrappers/bin:$PATH" ];
+    };
+  };
 
   nix.buildMachines = [
     {
