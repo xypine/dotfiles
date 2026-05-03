@@ -129,7 +129,7 @@
     nvtopPackages.amd
     bitwig-studio
     prismlauncher
-    lutris
+    # lutris
     libreoffice
   ];
 

@@ -104,8 +104,7 @@
         "remoteBuilder"
         "elias"
       ];
-      # Allow unfree
-      nixpkgs.config.allowUnfree = true;
+
       nixpkgs.overlays = [
         (final: prev: {
           wlvncc = prev.wlvncc.overrideAttrs (old: {

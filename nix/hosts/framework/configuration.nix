@@ -17,10 +17,13 @@
         self.nixosModules.niri
       ];
 
+      # Enable flakes
       nix.settings.experimental-features = [
         "nix-command"
         "flakes"
       ];
+      # Allow proprietary packages
+      nixpkgs.config.allowUnfree = true;
 
       networking.hostName = "framework";
 
@@ -126,7 +129,7 @@
         nvtopPackages.amd
         bitwig-studio
         prismlauncher
-        lutris
+        # lutris
         libreoffice
       ];
 
