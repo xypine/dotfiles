@@ -14,7 +14,7 @@
         self.nixosModules.base
         self.nixosModules.home
         self.nixosModules.graphical
-        self.nixosModules.frameworkHardware
+        self.nixosModules.eepcHardware
         self.nixosModules.kde
       ];
 
