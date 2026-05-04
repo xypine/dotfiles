@@ -11,6 +11,13 @@ in
         enable = true;
         package = self.packages.${pkgs.stdenv.hostPlatform.system}.myNiri;
       };
+
+      # Needed for keyboard shortcuts
+      environment.systemPackages = with pkgs; [
+        brightnessctl
+        playerctl
+        wireplumber # This provides the 'wpctl' command
+      ];
     };
 
   perSystem =
@@ -90,6 +97,22 @@ in
 
           # --- Key Bindings ---
           binds = {
+            # Audio / Volume
+            "XF86AudioRaiseVolume".spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+";
+            "XF86AudioLowerVolume".spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
+            "XF86AudioMute".spawn-sh = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+            "XF86AudioMicMute".spawn-sh = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+
+            # Media Controls
+            "XF86AudioPlay".spawn-sh = "playerctl play-pause";
+            "XF86AudioPause".spawn-sh = "playerctl pause";
+            "XF86AudioNext".spawn-sh = "playerctl next";
+            "XF86AudioPrev".spawn-sh = "playerctl previous";
+
+            # Screen Brightness
+            "XF86MonBrightnessUp".spawn-sh = "brightnessctl set 5%+";
+            "XF86MonBrightnessDown".spawn-sh = "brightnessctl set 5%-";
+
             # Basics
             "Mod+Return".spawn-sh = lib.getExe pkgs.alacritty;
             "Mod+Shift+Q".close-window = { };
