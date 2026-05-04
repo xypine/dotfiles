@@ -10,7 +10,9 @@ in
       services.displayManager.plasma-login-manager = {
         enable = true;
       };
-      services.kdeconnect.enable = true;
+
+      # TODO: this is really a home manager option
+      # services.kdeconnect.enable = true;
 
       environment.systemPackages = with pkgs; [
         kdePackages.qtwebsockets

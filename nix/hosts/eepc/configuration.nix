@@ -1,7 +1,7 @@
 { self, inputs, ... }:
 {
 
-  flake.nixosModules.frameworkConfiguration =
+  flake.nixosModules.eepcConfiguration =
     {
       pkgs,
       lib,
@@ -9,6 +9,14 @@
       ...
     }:
     {
+      # Enable flakes
+      nix.settings.experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      # Allow proprietary packages
+      nixpkgs.config.allowUnfree = true;
+
       networking.hostName = "eepc";
       imports = [
         self.nixosModules.base
