@@ -73,7 +73,7 @@
       };
       monospace = {
         package = pkgs.nerd-fonts.blex-mono;
-        name = "BlexMono Nerd Font";
+        name = "BlexMono Nerd Font Mono Regular";
       };
       emoji = {
         package = pkgs.noto-fonts-color-emoji;

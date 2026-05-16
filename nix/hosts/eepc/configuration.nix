@@ -23,7 +23,8 @@
         self.nixosModules.home
         self.nixosModules.graphical
         self.nixosModules.eepcHardware
-        self.nixosModules.kde
+        # self.nixosModules.kde
+        self.nixosModules.niri
       ];
 
       boot = {
@@ -296,6 +297,14 @@
           };
         };
       };
+
+      networking.hosts = {
+  "0.0.0.0" = [
+    "paradise-s1.battleye.com"
+    "test-s1.battleye.com"
+    "paradiseenhanced-s1.battleye.com"
+  ];
+};
 
       # Open ports in the firewall.
       # networking.firewall.allowedTCPPorts = [ ... ];

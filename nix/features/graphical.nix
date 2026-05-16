@@ -75,7 +75,7 @@
           };
           monospace = {
             package = pkgs.nerd-fonts.blex-mono;
-            name = "BlexMono Nerd Font";
+            name = "BlexMono Nerd Font Mono";
           };
           emoji = {
             package = pkgs.noto-fonts-color-emoji;
@@ -101,13 +101,23 @@
       #######
       fonts = {
         enableDefaultPackages = true;
+        fontDir.enable = true;
         packages = with pkgs; [
+          inter
+          noto-fonts-color-emoji
+          nerd-fonts.blex-mono
+
           cantarell-fonts
           montserrat
           lmodern
-          nerd-fonts.blex-mono
           nerd-fonts.fira-mono
         ];
+        fontconfig = {
+          defaultFonts = {
+            sansSerif = [ "Inter" ];
+            monospace = [ "BlexMono Nerd Font Mono" ];
+          };
+        };
       };
 
       # Graphical applications / desktop tools
@@ -116,16 +126,12 @@
         mpv
         pavucontrol
         # Patched version of sway with more eye candy
-        swayfx-unwrapped
-        swayosd
         wlsunset
         nwg-displays
         grim # screenshots
         slurp # screenshots
         wf-recorder # screenrecording
         wl-clipboard
-        swaylock
-        swayidle
         autotiling
         (cliphist.overrideAttrs (_old: {
           src = pkgs.fetchFromGitHub {
@@ -137,7 +143,6 @@
           vendorHash = "sha256-M5n7/QWQ5POWE4hSCMa0+GOVhEDCOILYqkSYIGoy/l0=";
         }))
         waybar
-        swaybg
         wl-kbptr
         lxqt.lxqt-policykit
         xdg-utils

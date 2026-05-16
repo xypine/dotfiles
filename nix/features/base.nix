@@ -136,6 +136,7 @@
       # $ nix search wget
       environment.systemPackages = with pkgs; [
         nh
+        nil
         git
         more
         jujutsu
