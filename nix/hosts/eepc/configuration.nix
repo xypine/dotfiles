@@ -24,7 +24,9 @@
         self.nixosModules.graphical
         self.nixosModules.eepcHardware
         # self.nixosModules.kde
-        self.nixosModules.niri
+        # self.nixosModules.niri
+        self.nixosModules.cosmic
+        self.nixosModules.gamescope
       ];
 
       boot = {
@@ -83,6 +85,9 @@
 
       # Enable networking
       networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+      hardware.bluetooth.enable = true; # enables support for Bluetooth
+      hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+      services.blueman.enable = true;
 
       # Media server
       services.jellyfin.enable = true;
@@ -93,6 +98,10 @@
 
       # Misc packages
       environment.systemPackages = with pkgs; [
+        mesa
+        mesa.drivers
+        eden
+
         nvtopPackages.amd
         bitwig-studio
         prismlauncher
@@ -141,6 +150,9 @@
             rocmSupport = true;
           }
         );
+        extraFlags = [
+    "--ctx-checkpoints" "1"
+  ];
       };
 
       # # Snapcast client listening to pc
@@ -299,12 +311,12 @@
       };
 
       networking.hosts = {
-  "0.0.0.0" = [
-    "paradise-s1.battleye.com"
-    "test-s1.battleye.com"
-    "paradiseenhanced-s1.battleye.com"
-  ];
-};
+        "0.0.0.0" = [
+          "paradise-s1.battleye.com"
+          "test-s1.battleye.com"
+          "paradiseenhanced-s1.battleye.com"
+        ];
+      };
 
       # Open ports in the firewall.
       # networking.firewall.allowedTCPPorts = [ ... ];
