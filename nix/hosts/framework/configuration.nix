@@ -142,12 +142,6 @@
         SleepOperation = "suspend-then-hibernate hybrid-sleep suspend hibernate";
       };
 
-      # Local LLM backend
-      services.ollama = {
-        enable = true;
-        package = pkgs.ollama-vulkan;
-      };
-
       # Snapcast client listening to pc
       systemd.user.services.snapclient-local = {
         wantedBy = [
