@@ -140,20 +140,17 @@
       # };
 
       # Local LLM backend
-      services.llama-cpp = {
-        enable = true;
-        host = "0.0.0.0";
-        port = 1331;
-        modelsDir = "/mnt/fast/llama";
-        package = (
-          pkgs.llama-cpp.override {
-            rocmSupport = true;
-          }
-        );
-        extraFlags = [
-    "--ctx-checkpoints" "1"
-  ];
-      };
+      # services.llama-cpp = {
+      #   enable = true;
+      #   host = "0.0.0.0";
+      #   port = 1331;
+      #   modelsDir = "/mnt/fast/llama";
+      #   package = (
+      #     pkgs.llama-cpp.override {
+      #       rocmSupport = true;
+      #     }
+      #   );
+      # };
 
       # # Snapcast client listening to pc
       # systemd.user.services.snapclient-local = {
