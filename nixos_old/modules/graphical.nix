@@ -140,8 +140,8 @@
     lxqt.lxqt-policykit
     xdg-utils
     brightnessctl
-    wayvnc # VNC Server
-    wlvncc # VNC Client
+    # wayvnc # VNC Server
+    # wlvncc # VNC Client
     networkmanagerapplet
     adwaita-icon-theme # Needed for some gtk apps
     protonup-ng

@@ -23,9 +23,9 @@
         self.nixosModules.home
         self.nixosModules.graphical
         self.nixosModules.eepcHardware
-        # self.nixosModules.kde
+        self.nixosModules.kde
         # self.nixosModules.niri
-        self.nixosModules.cosmic
+        # self.nixosModules.cosmic
         self.nixosModules.gamescope
       ];
 
@@ -87,7 +87,15 @@
       networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
       hardware.bluetooth.enable = true; # enables support for Bluetooth
       hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
-      services.blueman.enable = true;
+      hardware.bluetooth.settings = {
+        General = {
+          ControllerMode = "dual";
+          FastConnectable = true;
+        };
+      };
+      #services.blueman.enable = true;
+
+      hardware.xpadneo.enable = true;
 
       # Media server
       services.jellyfin.enable = true;
@@ -140,17 +148,15 @@
       # };
 
       # Local LLM backend
-      # services.llama-cpp = {
-      #   enable = true;
-      #   host = "0.0.0.0";
-      #   port = 1331;
-      #   modelsDir = "/mnt/fast/llama";
-      #   package = (
-      #     pkgs.llama-cpp.override {
-      #       rocmSupport = true;
-      #     }
-      #   );
-      # };
+      services.llama-cpp = {
+        enable = true;
+        settings = {
+          host = "0.0.0.0";
+          port = 1331;
+          models-dir = "/mnt/fast/llama";
+        };
+        package = (pkgs.llama-cpp-rocm);
+      };
 
       # # Snapcast client listening to pc
       # systemd.user.services.snapclient-local = {
