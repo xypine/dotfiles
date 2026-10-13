@@ -149,6 +149,7 @@
         brightnessctl
         # wayvnc # VNC Server
         # wlvncc # VNC Client
+        waypipe
         wl-mirror
         nautilus
         networkmanagerapplet
