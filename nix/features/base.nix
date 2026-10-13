@@ -59,6 +59,7 @@
             "i2c"
             "disk"
             "adbusers"
+            "dialout"
           ]; # wheel = Enable ‘sudo’ for the user
         };
         # joonas = {
